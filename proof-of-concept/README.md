@@ -1,13 +1,13 @@
-# proof of concept
+## Proof of concept
 
 In this folder we add one endpoint where we start the first proof of concept of the project.
 
-# Run
+## Run
 
 > node ./app.js
 
 
-# Use
+## Use
 
 - pick a youtube video, and get its video id
 - hit http://localhost:3001/transcribe?videoId=VIDEO_ID
