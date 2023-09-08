@@ -14,5 +14,5 @@ https://trello.com/b/9fAZDbfG/youtube-gpt-project
 https://docs.google.com/document/d/17PKQtv7nQSWA7LBODZXx6OjzAxxs4o4AxtpvTVwsQf4/edit
 
 #### Quiz ppt presentation
-https://docs.google.com/presentation/d/1qluZ_9px6d0ZVopWJl4lUFa9OmqwTcx71Aql_9r1xX4/edit#slide=id.p
+[https://docs.google.com/presentation/d/1qluZ_9px6d0ZVopWJl4lUFa9OmqwTcx71Aql_9r1xX4/edit#slide=id.p](https://docs.google.com/presentation/d/128HsC2DuskGyxyy5OJVuLq06K4wb64UOrc-C5kg4J3s/edit#slide=id.g27c7a618a0c_0_819)https://docs.google.com/presentation/d/128HsC2DuskGyxyy5OJVuLq06K4wb64UOrc-C5kg4J3s/edit#slide=id.g27c7a618a0c_0_819
 
