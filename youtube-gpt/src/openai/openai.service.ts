@@ -48,8 +48,8 @@ export class OpenaiService {
     }
   }
 
-  async transcribeAudio(audioStream) {
-    const filePath = "audio.mp4";
+  async transcribeAudio(audioStream, name) {
+    const filePath = `audios/${name}.mp4`;
     await this.saveAudioToFile(audioStream, filePath);
     const transcription = await this.openai.audio.transcriptions.create({
       file: fs.createReadStream(filePath),

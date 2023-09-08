@@ -21,55 +21,62 @@ export class VideoProcessService {
     },
   ];
 
-  async processVideo(videoId: string, lang: string): Promise<string> {
-    const transcribedText =
-      "This is an example text in order to show something long";
-    const question = "What is the meaning of life?";
-    const max_tokens = 80;
+  async processVideo(
+    videoId: string,
+    lang: string
+  ): Promise<{ transcription: string; summary: string; quiz: string }> {
+    const transcription = await this.transcribe(videoId, lang);
 
-    console.log("videoId", videoId);
-    console.log("lang", lang);
+    // const title = await getTitleFromText(transcribedText, lang)
+    const summary = await this.getSummaryFromText(transcription, lang);
+    const quiz = await this.getQuizFromText(transcription, lang);
 
-    return this.transcribe(videoId, lang)
-
-    // return await this.openaiService.getResponseFromOpenAI(
-    //   transcribedText,
-    //   question,
-    //   max_tokens
-    // );
+    return { transcription, summary, quiz };
   }
 
   async transcribe(videoId: string, lang: string): Promise<string> {
-
-    console.log("transcribe 0");
     const url = `https://www.youtube.com/watch?v=${videoId}`;
-
-    console.log("transcribe 0", url);
-
     if (!ytdl.validateURL(url)) {
       throw new HttpException("Invalid URL", HttpStatus.BAD_REQUEST);
     }
-
-    console.log("transcribe 0.5", url);
-
     const info = await ytdl.getInfo(url);
-
-    console.log("transcribe 1");
     const audioFormat = ytdl.chooseFormat(info.formats, {
       filter: "audioonly",
       quality: "highestaudio",
     });
-    console.log("transcribe 2");
     if (!audioFormat) {
       throw new HttpException("No audio found", HttpStatus.BAD_REQUEST);
     }
-    console.log("transcribe 3");
     const audioStream = ytdl(url, { format: audioFormat });
-    console.log("transcribe 4");
-    const transcribedText = await this.openaiService.transcribeAudio(audioStream);
-    console.log("transcribe 5");
+    const transcribedText = await this.openaiService.transcribeAudio(
+      audioStream,
+      videoId
+    );
     return transcribedText;
   }
 
+  async getSummaryFromText(transcribedText, lang) {
+    const content = await this.openaiService.getResponseFromOpenAI(
+      transcribedText,
+      this.questions[1][lang],
+      512
+    );
+    return content
+      .split("\n\n")
+      .map((paragraph) => `<p>${paragraph}</p>`)
+      .join("");
+  }
 
+  async getQuizFromText(transcribedText, lang) {
+    const content = await this.openaiService.getResponseFromOpenAI(
+      transcribedText,
+      this.questions[2][lang],
+      512
+    );
+    console.log(content);
+    return content
+      .split("\n\n")
+      .map((paragraph) => `<p>${paragraph}</p>`)
+      .join("");
+  }
 }

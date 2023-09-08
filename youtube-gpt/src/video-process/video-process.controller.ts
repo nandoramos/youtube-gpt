@@ -16,7 +16,9 @@ export class VideoProcessController {
   ) {}
 
   @Post()
-  async test(@Body() body): Promise<string> {
+  async test(
+    @Body() body
+  ): Promise<{ transcription: string; summary: string; quiz: string }> {
     const { videoId, lang } = body;
     return await this.videoProcessService.processVideo(videoId, lang);
   }
