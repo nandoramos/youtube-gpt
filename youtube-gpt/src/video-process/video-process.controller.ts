@@ -6,6 +6,8 @@ import { Task } from "src/tasks/task.entity";
 import { VideoProcessService } from "./video-process.service";
 import { ConfigService } from "@nestjs/config";
 import { OpenaiService } from "src/openai/openai.service";
+import { ProcessVideo } from "./dto/process-video.dto";
+import { VideoResult } from "./dto/video-result.dto";
 
 @Controller("video-process")
 export class VideoProcessController {
@@ -17,9 +19,8 @@ export class VideoProcessController {
 
   @Post()
   async test(
-    @Body() body
-  ): Promise<{ transcription: string; summary: string; quiz: string }> {
-    const { videoId, lang } = body;
-    return await this.videoProcessService.processVideo(videoId, lang);
+    @Body() processVideoData: ProcessVideo
+  ): Promise<VideoResult> {
+    return await this.videoProcessService.processVideo(processVideoData);
   }
 }

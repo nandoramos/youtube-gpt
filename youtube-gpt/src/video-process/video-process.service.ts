@@ -1,6 +1,8 @@
 import { OpenaiService } from "src/openai/openai.service";
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import * as ytdl from "ytdl-core";
+import { VideoResult } from "./dto/video-result.dto";
+import { ProcessVideo } from "./dto/process-video.dto";
 
 @Injectable()
 export class VideoProcessService {
@@ -21,17 +23,16 @@ export class VideoProcessService {
     },
   ];
 
-  async processVideo(
-    videoId: string,
-    lang: string
-  ): Promise<{ transcription: string; summary: string; quiz: string }> {
-    const transcription = await this.transcribe(videoId, lang);
-
-    // const title = await getTitleFromText(transcribedText, lang)
-    const summary = await this.getSummaryFromText(transcription, lang);
-    const quiz = await this.getQuizFromText(transcription, lang);
-
-    return { transcription, summary, quiz };
+  async processVideo(processVideoData: ProcessVideo): Promise<VideoResult> {
+    const { videoId, lang } = processVideoData;
+    try {
+      const transcription = await this.transcribe(videoId, lang);
+      const summary = await this.getSummaryFromText(transcription, lang);
+      const quiz = await this.getQuizFromText(transcription, lang);
+      return { transcription, summary, quiz } as VideoResult;
+    } catch (error) {
+      throw new Error("Failed to process video :" + error);
+    }
   }
 
   async transcribe(videoId: string, lang: string): Promise<string> {
