@@ -71,3 +71,30 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## Database
+
+### Install Docker
+- https://www.docker.com/products/docker-desktop/
+
+
+### Install PG Admin
+https://www.pgadmin.org/download/
+
+
+## Create DB
+```docker run --name youtube-gtp -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres ``` (update password here)
+
+## Register server in PG Admin
+- go to pgAdmin
+- register a new server
+      - name:
+      - host: localhost
+      - port: 5432
+      - password: same as in the creation
+
+- Create database
+      - In the server created
+      - go to databases -> create -> database
+      - database: youtube-gpt-db
