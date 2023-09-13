@@ -6,6 +6,8 @@ import { VideoProcessModule } from './video-process/video-process.module';
 import { OpenaiModule } from './openai/openai.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config.schema';
+import { TranscriptionsModule } from './processed-data/transcriptions.module';
+import { Transcription } from './processed-data/transcription.entity';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { configValidationSchema } from './config.schema';
     AuthModule,
     VideoProcessModule,
     OpenaiModule,
+    TranscriptionsModule,
   ],
 })
 export class AppModule {}
