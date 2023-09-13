@@ -3,17 +3,15 @@ import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import * as ytdl from "ytdl-core";
 import { VideoResult } from "./dto/video-result.dto";
 import { Lang, ProcessVideo } from "./dto/process-video.dto";
-import { TranscriptionsService } from "src/processed-data/transctiptions.service";
+import { ProcessDataService } from "src/processed-data/procces-data.service";
 import { Transcription } from "src/processed-data/transcription.entity";
 
 @Injectable()
 export class VideoProcessService {
   constructor(
     private openaiService: OpenaiService,
-    private transcriptionsService: TranscriptionsService
+    private processDataService: ProcessDataService
   ) {}
-
-  ignoreSummary = false;
 
   structure = `{
     q: "question nr 1",
@@ -52,9 +50,11 @@ export class VideoProcessService {
     const { videoId, lang } = processVideoData;
     try {
       const transcription = await this.transcribe(videoId, lang);
-      const summary = this.ignoreSummary
-        ? "lore ipsum"
-        : await this.getSummaryFromText(transcription.text, videoId, lang);
+      const summary = await this.getSummaryFromText(
+        transcription.text,
+        videoId,
+        lang
+      );
       const quiz = await this.getQuizFromText(
         transcription.text,
         videoId,
@@ -76,7 +76,7 @@ export class VideoProcessService {
   }
 
   async transcribe(videoId: string, lang: string): Promise<Transcription> {
-    const transcription = await this.transcriptionsService.getTranscription(
+    const transcription = await this.processDataService.getTranscription(
       videoId
     );
     if (transcription) {
@@ -104,7 +104,7 @@ export class VideoProcessService {
       );
 
       const newTranscription =
-        await this.transcriptionsService.createTranscription({
+        await this.processDataService.createTranscription({
           videoId,
           title,
           text: transcribedText,
@@ -119,7 +119,7 @@ export class VideoProcessService {
     videoId: string,
     lang: Lang
   ): Promise<string> {
-    const summary = await this.transcriptionsService.getSummary(videoId, lang);
+    const summary = await this.processDataService.getSummary(videoId, lang);
     if (summary) {
       console.log("summary found!");
       return summary.text;
@@ -129,7 +129,7 @@ export class VideoProcessService {
         this.questions[1][lang],
         512
       );
-      this.transcriptionsService.createSummary(videoId, content, lang);
+      this.processDataService.createSummary(videoId, content, lang);
       return content;
     }
   }
@@ -139,26 +139,25 @@ export class VideoProcessService {
     videoId: string,
     lang: Lang
   ): Promise<string> {
-    const quiz = await this.transcriptionsService.getQuiz(videoId, lang);
+    const quiz = await this.processDataService.getQuiz(videoId, lang);
     if (quiz) {
       console.log("quiz found!");
       return quiz.text;
     } else {
-      const content = await this.openaiService.getResponseFromOpenAI(
+      const quizGenerated = await this.openaiService.getResponseFromOpenAI(
         transcribedText,
         this.questions[2][lang],
         750
       );
-      console.log(content);
+      console.log("quiz generated: " + quizGenerated);
+      const stringQuiz = JSON.stringify(quizGenerated);
 
-      const jsonResults = JSON.stringify(content);
-
-      this.transcriptionsService.createQuiz(videoId, jsonResults, lang);
-      return content;
+      this.processDataService.createQuiz(videoId, stringQuiz, lang);
+      return quizGenerated;
     }
   }
 
   async getAll(): Promise<Transcription[]> {
-    return await this.transcriptionsService.getAll();
+    return await this.processDataService.getAll();
   }
 }

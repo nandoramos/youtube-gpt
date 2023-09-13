@@ -9,11 +9,13 @@ import { SummariesRepository } from "./summaries.repository";
 import { QuizzesRepository } from "./quizzes.repository";
 
 @Injectable()
-export class TranscriptionsService {
+export class ProcessDataService {
   constructor(
     @InjectRepository(TranscriptionsRepository)
     private transcriptionsRepository: TranscriptionsRepository,
+    @InjectRepository(SummariesRepository)
     private summariesRepository: SummariesRepository,
+    @InjectRepository(QuizzesRepository)
     private quizzesRepository: QuizzesRepository
   ) {}
 

@@ -3,15 +3,10 @@ import { VideoProcessService } from "./video-process.service";
 import { VideoProcessController } from "./video-process.controller";
 import { ConfigModule } from "@nestjs/config";
 import { OpenaiModule } from "src/openai/openai.module";
-import { TranscriptionsModule } from "src/processed-data/transcriptions.module";
-import { TranscriptionsService } from "src/processed-data/transctiptions.service";
-import { TranscriptionsRepository } from "src/processed-data/transcriptions.repository";
-import { TasksModule } from "src/tasks/tasks.module";
-import { TasksService } from "src/tasks/tasks.service";
-import { TasksRepository } from "src/tasks/tasks.repository";
+import { ProcessDataModule } from "src/processed-data/process-data.module";
 
 @Module({
-  imports: [ConfigModule, OpenaiModule, TranscriptionsModule],
+  imports: [ConfigModule, OpenaiModule, ProcessDataModule],
   providers: [VideoProcessService],
   controllers: [VideoProcessController],
 })
