@@ -1,12 +1,14 @@
-import { CircularProgress } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
+    <Box>
+      <Heading as="h2">Not Found</Heading>
+      <Text>Could not find requested resource</Text>
       <Link href="/">Return Home</Link>
-    </div>
+    </Box>
   );
-}
+};
+
+export default NotFound;

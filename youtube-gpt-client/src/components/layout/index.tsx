@@ -1,37 +1,15 @@
 import { Flex } from '@chakra-ui/react';
-import { ReactElement } from 'react';
+import Header from '../header';
+import MainContent from '../mainContent';
+import { PropsWithChildren } from '@/types';
 
-interface AppLayoutInterface {
-  children?: ReactElement;
-}
-
-function Navbar() {
+const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <Flex bg="#5893CE" h="45px" padding="0px 20px" alignItems="center">
-      <>HEADER</>
+    <Flex direction="column" width="100vw" height="100vh">
+      <Header />
+      <MainContent>{children}</MainContent>
     </Flex>
   );
-}
+};
 
-function Footer() {
-  return <></>;
-}
-
-export default function Layout({ children }: AppLayoutInterface) {
-  return (
-    <Flex direction="column">
-      <Navbar />
-      <main
-        style={{
-          backgroundColor: '#fff',
-          width: '100%',
-          borderRadius: '20px 20px 0 0 ',
-        }}
-      >
-        {children}
-      </main>
-
-      <Footer />
-    </Flex>
-  );
-}
+export default Layout;
