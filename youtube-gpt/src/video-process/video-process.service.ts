@@ -1,10 +1,10 @@
-import { OpenaiService } from "src/openai/openai.service";
+import { OpenaiService } from "../openai/openai.service";
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import * as ytdl from "ytdl-core";
 import { VideoResult } from "./dto/video-result.dto";
 import { Lang, ProcessVideo } from "./dto/process-video.dto";
-import { ProcessDataService } from "src/processed-data/procces-data.service";
-import { Transcription } from "src/processed-data/transcription.entity";
+import { ProcessDataService } from "../processed-data/procces-data.service";
+import { Transcription } from "../processed-data/transcription.entity";
 
 @Injectable()
 export class VideoProcessService {

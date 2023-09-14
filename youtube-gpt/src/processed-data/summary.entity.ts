@@ -1,4 +1,4 @@
-import { Lang } from "src/video-process/dto/process-video.dto";
+import { Lang } from "../video-process/dto/process-video.dto";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

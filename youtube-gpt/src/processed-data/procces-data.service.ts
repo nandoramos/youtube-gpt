@@ -3,7 +3,7 @@ import { TranscriptionsRepository } from "./transcriptions.repository";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Transcription } from "./transcription.entity";
 import { CreateTranscriptionDto } from "./dto/create-transcription.dto";
-import { Lang } from "src/video-process/dto/process-video.dto";
+import { Lang } from "../video-process/dto/process-video.dto";
 import { Summary } from "./summary.entity";
 import { SummariesRepository } from "./summaries.repository";
 import { QuizzesRepository } from "./quizzes.repository";
