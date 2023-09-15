@@ -3,15 +3,13 @@ import { ConfigService } from "@nestjs/config";
 const { OpenAI } = require("openai");
 import * as fs from "fs";
 
+
 @Injectable()
 export class OpenaiService {
   constructor(private configService: ConfigService) {}
 
-  MODEL_NAME = this.configService.get("MODEL_NAME");
-  OPEN_AI_KEY = this.configService.get("OPEN_AI_KEY");
-
   openai = new OpenAI({
-    apiKey: this.OPEN_AI_KEY,
+    apiKey: this.configService.get("OPEN_AI_KEY"),
   });
 
   async getResponseFromOpenAI(
@@ -21,7 +19,7 @@ export class OpenaiService {
   ): Promise<string> {
     try {
       const { choices } = await this.openai.chat.completions.create({
-        model: this.MODEL_NAME,
+        model: this.configService.get("MODEL_NAME"),
         messages: [
           {
             role: "system",
