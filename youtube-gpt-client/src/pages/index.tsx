@@ -1,15 +1,11 @@
-import Head from 'next/head';
+import MainContent from '@/components/mainContent';
+import SearchLearnQuiz from '@/components/searchLearnQuiz';
 
 const Home = () => {
   return (
-    <>
-      <Head>
-        <title>Youtube GPT</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {/* HERE GOES THE MAIN CONTENT */}
-    </>
+    <MainContent alignItems="center">
+      <SearchLearnQuiz />
+    </MainContent>
   );
 };
 

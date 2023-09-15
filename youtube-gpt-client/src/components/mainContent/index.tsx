@@ -1,18 +1,11 @@
-import { PropsWithChildren } from '@/types';
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+import { PropsWithChildren } from 'react';
 
-const MainContent = ({ children }: PropsWithChildren) => {
+const MainContent: typeof Flex = ({ children }: PropsWithChildren) => {
   return (
-    <Box
-      as="main"
-      width="100%"
-      backgroundColor="#fff"
-      borderRadius="20px 20px 0 0"
-      height="calc(100vh - 50px)"
-      padding="30px 50px"
-    >
+    <Flex alignSelf="center" width="100%" height="100%">
       {children}
-    </Box>
+    </Flex>
   );
 };
 
