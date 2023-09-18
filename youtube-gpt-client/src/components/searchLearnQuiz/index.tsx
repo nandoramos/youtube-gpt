@@ -1,15 +1,24 @@
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import SearchLearnQuizIcon from '../searchLearnQuizIcon';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Send video URL to API
+    const res = await fetch('[API_URL]');
 
+    // if (!res.ok) {
+    //   alert('ERROR');
+    //   return;
+    // }
+
+    router.push('/video-summary');
     // Reset input
-    setVideoUrl('');
+    // setVideoUrl('');
   };
 
   return (
@@ -50,6 +59,7 @@ const SearchLearnQuiz = () => {
             height: '40px',
             color: '#fff',
           }}
+          isDisabled={!videoUrl}
           onClick={handleSubmit}
         >
           START

@@ -1,4 +1,5 @@
-import { Flex, Heading, Link } from '@chakra-ui/react';
+import { Flex, Heading, Icon, Link } from '@chakra-ui/react';
+import { MdLanguage } from "react-icons/md";
 
 const Header = () => {
   return (
@@ -12,9 +13,10 @@ const Header = () => {
       <Heading size="md">
         <Link href="/">Youtube GPT</Link>
       </Heading>
-      <Flex gap="20px">
+      <Flex gap="20px" alignItems="center">
         <Link href="/how-it-works">How it works</Link>
         <Link href="/team">Team</Link>
+        <Icon as={MdLanguage} cursor="pointer" />
       </Flex>
     </Flex>
   );
