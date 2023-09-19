@@ -1,0 +1,7 @@
+{
+  "notFoundPage": {
+    "title": "404",
+    "subtitle": "Lo sentimos, no pudimos encontrar esa página.",
+    "cta": "Volver a la Página de Inicio"
+  }
+}
