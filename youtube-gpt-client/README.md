@@ -1,38 +1,150 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<a name="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+<br />
+<div align="center">
+  <a href="https://github.com/nandoramos/youtube-gpt/tree/main/youtube-gpt-client">
+    <img src="images/logo.png" alt="Logo" width="300" height="120">
+  </a>
+
+<h3 align="center">YouTube GPT - Client</h3>
+
+  <p align="center">
+    Automatic Video Summarization and Quiz Generation Platform
+    <br />
+    <a href="https://github.com/nandoramos/youtube-gpt/tree/main/youtube-gpt-client/docs"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="#">View Demo</a>
+    ·
+    <a href="https://github.com/nandoramos/youtube-gpt/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/nandoramos/youtube-gpt/issues">Request Feature</a>
+  </p>
+</div>
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#documentation">Useful Documentation</a></li>
+  </ol>
+</details>
+
+## About The Project
+
+[![YouTubeGPT][product-screenshot]](https://example.com)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+- [Next.js][Next-url]
+- [React.js][React-url]
+- [Chakra UI][Chakra-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running follow these simple example steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+### Prerequisites
+
+To run this software you need to install the npm:
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/nandoramos/youtube-gpt.git
+   ```
+2. Go to client folder
+   ```sh
+   cd youtube-gpt-client
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run the project
+   ```sh
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contributing
+
+1. Download the project main branch
+2. Create your amazing feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'feat(AmazingFeature): new feature added'`) we use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## How to setup the translations
+
+In order to use the translation, the **serverSideTranslations HOC** should be added to all pages inside the /pages folder in the getStaticProps function. For example:
+
+```
+export const getStaticProps: GetStaticProps = async (context) => {
+  let { locale } = context;
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en')),
+    },
+  };
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Using getStaticProps, we can access the locale parameter from the navigation, and we can pass the JSON translations to our page.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Useful Documentation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [NextJS](https://nextjs.org/docs)
+- [Chakra UI](https://chakra-ui.com/getting-started)
+- [Axios Client](https://axios-http.com/docs/intro)
+- [react-i18next](https://react.i18next.com/latest/usetranslation-hook)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[contributors-shield]: https://img.shields.io/github/contributors/nandoramos/youtube-gpt.svg?style=for-the-badge
+[contributors-url]: https://github.com/nandoramos/youtube-gpt/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/nandoramos/youtube-gpt.svg?style=for-the-badge
+[forks-url]: https://github.com/nandoramos/youtube-gpt/network/members
+[stars-shield]: https://img.shields.io/github/stars/nandoramos/youtube-gpt.svg?style=for-the-badge
+[stars-url]: https://github.com/nandoramos/youtube-gpt/stargazers
+[issues-shield]: https://img.shields.io/github/issues/nandoramos/youtube-gpt.svg?style=for-the-badge
+[issues-url]: https://github.com/nandoramos/youtube-gpt/issues
+[product-screenshot]: images/screenshot.png
+[Next-url]: https://nextjs.org/
+[Chakra-url]: https://nextjs.org
+[React-url]: https://reactjs.org/
