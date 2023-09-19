@@ -14,7 +14,7 @@
 <h3 align="center">YouTube GPT - Client</h3>
 
   <p align="center">
-    project_description
+    Automatic Video Summarization and Quiz Generation Platform
     <br />
     <a href="https://github.com/nandoramos/youtube-gpt/tree/main/youtube-gpt-client/docs"><strong>Explore the docs »</strong></a>
     <br />
