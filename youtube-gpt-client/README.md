@@ -8,7 +8,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/nandoramos/youtube-gpt/tree/main/youtube-gpt-client">
-    <img src="images/logo.png" alt="Logo" width="180" height="40">
+    <img src="images/logo.png" alt="Logo" width="300" height="120">
   </a>
 
 <h3 align="center">YouTube GPT - Client</h3>
