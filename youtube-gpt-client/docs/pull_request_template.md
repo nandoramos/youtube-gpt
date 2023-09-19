@@ -2,6 +2,10 @@
 
 Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
+## Demo
+
+Please include a small gif to demonstrate the feature working or the fix.
+
 ## Type of change
 
 Please delete options that are not relevant.

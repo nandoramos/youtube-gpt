@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -18,7 +18,7 @@ const NotFound = () => {
         {t('notFoundPage.title')}
       </Heading>
       <Text mb="10px">{t('notFoundPage.subtitle')}</Text>
-      <Link href="/" locale={i18n.language}>
+      <Link href="/">
         <Text color="#5893CE" fontWeight="400">
           {t('notFoundPage.cta')}
         </Text>

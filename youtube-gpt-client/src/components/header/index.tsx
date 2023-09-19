@@ -4,7 +4,7 @@ import LanguageSwitcher from '@/components/header/languageSwitcher';
 import Link from 'next/link';
 
 const Header = () => {
-  const { t, i18n } = useTranslation('menu');
+  const { t } = useTranslation('menu');
   return (
     <Flex
       justifyContent="space-between"
@@ -17,12 +17,8 @@ const Header = () => {
         <Link href="/">Youtube GPT</Link>
       </Heading>
       <Flex gap="20px" fontSize="20px">
-        <Link href="/how-it-works" locale={i18n.language}>
-          {t('howItWorks')}
-        </Link>
-        <Link href="/team" locale={i18n.language}>
-          {t('team')}
-        </Link>
+        <Link href="/how-it-works">{t('howItWorks')}</Link>
+        <Link href="/team">{t('team')}</Link>
         <LanguageSwitcher />
       </Flex>
     </Flex>

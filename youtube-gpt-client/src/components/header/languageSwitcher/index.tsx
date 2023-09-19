@@ -7,6 +7,7 @@ import {
   MenuItemOption,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { setCookie } from 'nookies';
 import { useTranslation } from 'react-i18next';
 
 const LanguageSwitcher = () => {
@@ -16,6 +17,10 @@ const LanguageSwitcher = () => {
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang, () => {
+      setCookie(null, 'NEXT_LOCALE', lang, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
       router.push({ pathname, query }, asPath, { locale: lang });
     });
   };
