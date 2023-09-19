@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
@@ -8,22 +8,22 @@ const NotFound = () => {
   const { t } = useTranslation();
 
   return (
-    <Box
-      alignContent="center"
+    <Flex
+      width="100%"
+      justifyContent="center"
       alignItems="center"
-      display="flex"
-      flexDirection="column"
+      direction="column"
     >
-      <Heading fontSize="60px" mb="20px" mt="40px">
-        {t('notFoundPage.title')}
-      </Heading>
-      <Text mb="10px">{t('notFoundPage.subtitle')}</Text>
-      <Link href="/">
-        <Text color="#5893CE" fontWeight="400">
-          {t('notFoundPage.cta')}
-        </Text>
-      </Link>
-    </Box>
+        <Heading fontSize="60px" mb="20px" mt="40px">
+          {t('notFoundPage.title')}
+        </Heading>
+        <Text mb="10px">{t('notFoundPage.subtitle')}</Text>
+        <Link href="/">
+          <Text color="#5893CE" fontWeight="400">
+            {t('notFoundPage.cta')}
+          </Text>
+        </Link>
+    </Flex>
   );
 };
 
