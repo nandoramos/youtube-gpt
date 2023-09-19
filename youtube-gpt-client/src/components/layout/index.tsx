@@ -9,7 +9,7 @@ const Layout = ({ children, isClientLoaded }: PropsWithChildren) => {
   }
 
   return (
-    <Flex direction="column" width="100vw" height="100vh">
+    <Flex direction="column" width="100vw" height="100%">
       <Header />
       <MainContent>{children}</MainContent>
     </Flex>
