@@ -1,8 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, PayloadTooLargeException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 const { OpenAI } = require("openai");
 import * as fs from "fs";
-
 
 @Injectable()
 export class OpenaiService {
@@ -46,9 +45,20 @@ export class OpenaiService {
     }
   }
 
-  async transcribeAudio(audioStream, name) {
+
+  async transcribeAudio(audioStream, name: string): Promise<string> {
     const filePath = `audios/${name}.mp4`;
-    await this.saveAudioToFile(audioStream, filePath);
+
+    try {
+      await this.saveAudioToFile(audioStream, filePath);
+      const transcription = await this.audioToText(filePath);
+      return transcription;
+    } catch (error) {
+      throw new Error(`Failed to trasncribe audio: ${error?.message}`);
+    }
+  }
+
+  async audioToText(filePath: string): Promise<string> {
     const transcription = await this.openai.audio.transcriptions.create({
       file: fs.createReadStream(filePath),
       model: "whisper-1",

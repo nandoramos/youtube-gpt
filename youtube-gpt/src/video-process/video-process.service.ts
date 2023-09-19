@@ -1,5 +1,5 @@
 import { OpenaiService } from "../openai/openai.service";
-import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, HttpStatus } from "@nestjs/common";
 import * as ytdl from "ytdl-core";
 import { VideoResult } from "./dto/video-result.dto";
 import { Lang, ProcessVideo } from "./dto/process-video.dto";
@@ -80,37 +80,38 @@ export class VideoProcessService {
       videoId
     );
     if (transcription) {
-      console.log(">>> transcription found!");
       return transcription;
     } else {
-      console.log("> transcription not found! > Generating transcription");
-      const url = `https://www.youtube.com/watch?v=${videoId}`;
-      if (!ytdl.validateURL(url)) {
-        throw new HttpException("Invalid URL", HttpStatus.BAD_REQUEST);
-      }
-      const info = await ytdl.getInfo(url);
-      const title = info.videoDetails.title;
-      const audioFormat = ytdl.chooseFormat(info.formats, {
-        filter: "audioonly",
-        quality: "highestaudio",
-      });
-      if (!audioFormat) {
-        throw new HttpException("No audio found", HttpStatus.BAD_REQUEST);
-      }
-      const audioStream = ytdl(url, { format: audioFormat });
-      const transcribedText = await this.openaiService.transcribeAudio(
-        audioStream,
-        videoId
-      );
-
-      const newTranscription =
-        await this.processDataService.createTranscription({
-          videoId,
-          title,
-          text: transcribedText,
+      try {
+        const url = `https://www.youtube.com/watch?v=${videoId}`;
+        if (!ytdl.validateURL(url)) {
+          throw new InternalServerErrorException("Invalid URL" );
+        }
+        const info = await ytdl.getInfo(url);
+        const title = info.videoDetails.title;
+        const audioFormat = ytdl.chooseFormat(info.formats, {
+          filter: "audioonly",
+          quality: "highestaudio",
         });
+        if (!audioFormat) {
+          throw new InternalServerErrorException("No audio found");
+        }
+        const audioStream = ytdl(url, { format: audioFormat });
+        const transcribedText = await this.openaiService.transcribeAudio(
+          audioStream,
+          videoId
+        );
+        const newTranscription =
+          await this.processDataService.createTranscription({
+            videoId,
+            title,
+            text: transcribedText,
+          });
 
-      return newTranscription;
+        return newTranscription;
+      } catch (error) {
+        throw new InternalServerErrorException("Failed to transcribe video :" + error);
+      }
     }
   }
 
@@ -127,7 +128,7 @@ export class VideoProcessService {
       const content = await this.openaiService.getResponseFromOpenAI(
         transcribedText,
         this.questions[1][lang],
-        512
+        1024
       );
       this.processDataService.createSummary(videoId, content, lang);
       return content;
