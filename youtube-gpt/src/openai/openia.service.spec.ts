@@ -68,7 +68,6 @@ describe('OpenaiService', () => {
       const result = await service.getResponseFromOpenAI('text', 'question', 500);
 
       expect(result).toBe('Test content');
-      // ... more assertions to check parameters if necessary ...
     });
 
     it('should throw error when no choices returned', async () => {
@@ -165,7 +164,7 @@ describe('OpenaiService', () => {
       mockStream.on('end', () => {
         mockWriteStream.end();
         mockWriteStream.on('finish', () => {
-          // Here, you can add additional assertions if needed
+
         });
       });
 
@@ -174,7 +173,6 @@ describe('OpenaiService', () => {
       expect(fs.createWriteStream).toHaveBeenCalledWith(mockFilePath);
     });
 
-    // ... (keep the error test as is)
   });
 
   describe('transcribeAudio', () => {
