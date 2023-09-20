@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
-import { Lang } from "src/video-process/dto/process-video.dto";
+import { Lang } from "../video-process/dto/process-video.dto";
 import { Quiz } from "./quiz.entity";
 
 @EntityRepository(Quiz)

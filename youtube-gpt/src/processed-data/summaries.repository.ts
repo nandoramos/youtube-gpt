@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from "typeorm";
 import { Summary } from "./summary.entity";
-import { Lang } from "src/video-process/dto/process-video.dto";
+import { Lang } from "../video-process/dto/process-video.dto";
 
 @EntityRepository(Summary)
 export class SummariesRepository extends Repository<Summary> {
