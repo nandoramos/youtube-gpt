@@ -15,10 +15,10 @@ const SearchLearnQuiz = () => {
     const res = await fetch('[API_URL]');
 
     // if (!res.ok) {
-    //   alert('ERROR');
-    //   return;
+    //   // HANDLE REQ ERROR
     // }
 
+    // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
     router.push('/video-summary');
     // Reset input
     // setVideoUrl('');
