@@ -1,8 +1,9 @@
-import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
+import { CSSProperties } from 'react';
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { CSSProperties } from 'react';
+import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
+import { getFeatures } from '@/services/howItWorks';
 
 const indexDotStyle: CSSProperties = {
   content: '""',
@@ -16,24 +17,7 @@ const indexDotStyle: CSSProperties = {
 
 const HowItWorks = () => {
   const { t } = useTranslation('howItWorks');
-  const features = [
-    {
-      title: 'features.superCoolTitle',
-      description: 'features.genericDescription',
-    },
-    {
-      title: 'features.superCoolTitle',
-      description: 'features.genericDescription',
-    },
-    {
-      title: 'features.superCoolTitle',
-      description: 'features.genericDescription',
-    },
-    {
-      title: 'features.superCoolTitle',
-      description: 'features.genericDescription',
-    },
-  ];
+  const features = getFeatures();
 
   return (
     <Box>
