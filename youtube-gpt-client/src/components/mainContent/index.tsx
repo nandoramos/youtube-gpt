@@ -8,8 +8,8 @@ const MainContent = ({ children }: PropsWithChildren) => {
       width="100%"
       backgroundColor="#fff"
       borderRadius="20px 20px 0 0"
-      height="calc(100vh - 60px)"
-      padding="30px 50px"
+      minHeight="calc(100vh - 60px)"
+      padding="55px 50px"
     >
       {children}
     </Box>
