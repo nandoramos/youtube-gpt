@@ -7,8 +7,9 @@ import { useTranslation } from 'react-i18next';
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const router = useRouter();
-  const { t, i18n } = useTranslation('home');
+  const { t } = useTranslation('home');
 
+  const youtubeRegex = /^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.be)\/.+$/;
 
   const handleSubmit = async () => {
     // Send video URL to API
@@ -47,7 +48,7 @@ const SearchLearnQuiz = () => {
             zIndex: 2,
             boxSizing: 'content-box',
             height: '40px',
-            width: '70%'
+            width: '70%',
           }}
           value={videoUrl}
           onChange={(e) => setVideoUrl(e.currentTarget.value)}
@@ -62,8 +63,9 @@ const SearchLearnQuiz = () => {
             zIndex: 1,
             height: '40px',
             color: '#fff',
+            textTransform: 'uppercase',
           }}
-          isDisabled={!videoUrl}
+          isDisabled={!videoUrl.match(youtubeRegex)}
           onClick={handleSubmit}
         >
           {t('start')}
