@@ -1,8 +1,9 @@
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import SearchLearnQuizIcon from '../searchLearnQuizIcon';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { getSummaryFromLink } from '@/services/videoProcessing';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -13,14 +14,21 @@ const SearchLearnQuiz = () => {
 
   const handleSubmit = async () => {
     // Send video URL to API
-    const res = await fetch('[API_URL]');
+    const res = getSummaryFromLink(videoUrl);
+    console.log('videoUrl:', videoUrl);
+    console.log('res:', res);
 
-    // if (!res.ok) {
-    //   // HANDLE REQ ERROR
-    // }
+    if (!res.ok) {
+      alert('Something went wrong, please try again.');
+      setVideoUrl('');
+      return;
+    }
 
     // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
-    router.push('/video-summary');
+    router.push(
+      { pathname: '/video-summary', query: res.data },
+      '/video-summary',
+    );
     // Reset input
     // setVideoUrl('');
   };
