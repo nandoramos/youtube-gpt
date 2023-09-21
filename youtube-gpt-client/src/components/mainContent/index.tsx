@@ -9,7 +9,7 @@ const MainContent = ({ children }: PropsWithChildren) => {
       backgroundColor="#fff"
       borderRadius="20px 20px 0 0"
       minHeight="calc(100vh - 60px)"
-      padding="55px 50px"
+      padding={['20px 10px', '55px 50px']}
     >
       {children}
     </Box>
