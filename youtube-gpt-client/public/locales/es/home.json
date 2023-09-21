@@ -2,5 +2,6 @@
   "search": "Busca",
   "learn": "Aprende",
   "quiz": "Juega",
-  "start": "COMENZAR"
+  "start": "COMENZAR",
+  "placeholder": "Pega el enlace de tu vídeo aquí"
 }

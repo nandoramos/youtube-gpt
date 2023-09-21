@@ -46,7 +46,7 @@ const SearchLearnQuiz = () => {
       <Flex width="80%" alignSelf="center" alignItems="center">
         <Input
           type="url"
-          placeholder="Paste your video link here"
+          placeholder={t('placeholder')}
           padding="0 20px"
           variant="unstyled"
           style={{

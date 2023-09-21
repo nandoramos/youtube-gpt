@@ -2,5 +2,6 @@
   "search": "Search",
   "learn": "Learn",
   "quiz": "Quiz",
-  "start": "START"
+  "start": "START",
+  "placeholder": "Paste your video link here"
 }
