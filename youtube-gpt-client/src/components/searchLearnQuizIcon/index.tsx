@@ -224,8 +224,6 @@ const SearchLearnQuizIcon = () => {
           y2="118.609"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#0099ED" />
-          <stop offset="1" stop-color="#43B4F3" />
         </linearGradient>
       </defs>
     </svg>
