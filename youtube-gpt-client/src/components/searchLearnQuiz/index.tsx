@@ -13,10 +13,7 @@ const SearchLearnQuiz = () => {
   const youtubeRegex = /^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.be)\/.+$/;
 
   const handleSubmit = async () => {
-    // Send video URL to API
     const res = getSummaryFromLink(videoUrl);
-    console.log('videoUrl:', videoUrl);
-    console.log('res:', res);
 
     if (!res.ok) {
       alert('Something went wrong, please try again.');
@@ -29,8 +26,6 @@ const SearchLearnQuiz = () => {
       { pathname: '/video-summary', query: res.data },
       '/video-summary',
     );
-    // Reset input
-    // setVideoUrl('');
   };
 
   return (
