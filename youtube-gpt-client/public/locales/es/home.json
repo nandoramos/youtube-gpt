@@ -3,5 +3,6 @@
   "learn": "Aprende",
   "quiz": "Juega",
   "start": "COMENZAR",
-  "placeholder": "Pega el enlace de tu vídeo aquí"
+  "placeholder": "Pega el enlace de tu vídeo aquí",
+  "inputInvalidMessage": "Funciona sólo con vídeos de Youtube."
 }

@@ -1,16 +1,16 @@
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import SearchLearnQuizIcon from '../searchLearnQuizIcon';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { getSummaryFromLink } from '@/services/videoProcessing';
+import { YOUTUBE_REGEX } from '@/utils/constans';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const router = useRouter();
   const { t } = useTranslation('home');
 
-  const youtubeRegex = /^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.be)\/.+$/;
 
   const handleSubmit = async () => {
     const res = getSummaryFromLink(videoUrl);
@@ -28,6 +28,11 @@ const SearchLearnQuiz = () => {
     );
   };
 
+  const isInputValid = useMemo(
+    () => !videoUrl.match(YOUTUBE_REGEX) && videoUrl !== '',
+    [videoUrl],
+  );
+
   return (
     <Flex width="700px" direction="column" margin="0 auto">
       <Flex gap="30px">
@@ -38,7 +43,12 @@ const SearchLearnQuiz = () => {
           <Text>{t('quiz')}</Text>
         </Flex>
       </Flex>
-      <Flex width="80%" alignSelf="center" alignItems="center">
+      <Flex
+        width="90%"
+        alignSelf="end"
+        alignItems="center"
+        position="relative"
+      >
         <Input
           type="url"
           placeholder={t('placeholder')}
@@ -46,6 +56,9 @@ const SearchLearnQuiz = () => {
           variant="unstyled"
           style={{
             backgroundColor: '#F5F5F5',
+            boxShadow: isInputValid
+              ? '0 1px 4px rgb(200, 0, 0, .5)'
+              : '',
             borderRadius: '20px',
             border: '2px solid #fff',
             zIndex: 2,
@@ -68,11 +81,23 @@ const SearchLearnQuiz = () => {
             color: '#fff',
             textTransform: 'uppercase',
           }}
-          isDisabled={!videoUrl.match(youtubeRegex)}
+          isDisabled={isInputValid}
           onClick={handleSubmit}
         >
           {t('start')}
         </Button>
+        {isInputValid && (
+          <Text
+            fontSize="10px"
+            padding="5px 10px"
+            color="rgb(200, 0, 0, .6)"
+            position="absolute"
+            top="42px"
+            left="10px"
+          >
+            {t('inputInvalidMessage')}
+          </Text>
+        )}
       </Flex>
     </Flex>
   );
