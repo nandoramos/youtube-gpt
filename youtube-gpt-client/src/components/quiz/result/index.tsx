@@ -5,7 +5,7 @@ import { QuizPageResultProps } from '@/types';
 import { Flex, Text, Button } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
+const QuizResult = ({ questions, correct, time }: QuizPageResultProps) => {
   const { t } = useTranslation('quiz');
   const userHasCorrectAnswer =
     questions !== undefined && correct !== undefined && correct > 0;
@@ -44,7 +44,7 @@ const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
     return <></>;
   };
   return (
-    <Flex flexDirection="column" gap="23px" alignItems="center">
+    <Flex flexDirection="column" gap="23px" alignItems="center" margin="0 auto">
       <Text
         textAlign="center"
         fontWeight="700"
@@ -61,8 +61,7 @@ const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
         textAlign="center"
         fontWeight="500"
         fontSize="20px"
-        lineHeight="45px"
-        letterSpacing="0.3"
+        lineHeight="30px"
         whiteSpace="pre-line"
       >
         {userHasCorrectAnswer
@@ -72,10 +71,21 @@ const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
             })
           : t('result.subTitleFailure')}
       </Text>
+      <Text
+        textAlign="center"
+        fontWeight="500"
+        fontSize="20px"
+        lineHeight="30px"
+        marginBottom="15px"
+      >
+        {t('result.time', {
+          time,
+        })}
+      </Text>
       <Flex flexDirection="row" gap="16px" alignItems="center">
         {userHasCorrectAnswer && (
           <Button
-            w="145px"
+            minW="145px"
             fontSize="14px"
             color="#5893CE"
             bg="rgba(0, 122, 255, 0.10)"
@@ -85,7 +95,7 @@ const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
           </Button>
         )}
         <Button
-          w="145px"
+          minW="145px"
           fontSize="14px"
           bg="#5893CE"
           borderRadius="8px"

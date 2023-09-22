@@ -7,6 +7,7 @@
     "unlucky": "Desafortunado!",
     "subTitle": "Has puntuado {{score}} de {{questions}}",
     "subTitleFailure": "Parece que fue un tema realmente difícil.\n¿Qué tal si lo intentamos de nuevo?",
+    "time": "Tiempo: {{time}}",
     "shareResults": "Compartir Resultados",
     "tryAgain": "Prueba con otro vídeo"
   }
