@@ -1,0 +1,13 @@
+{
+  "title" : "Quiz",
+  "result": {
+    "youRock": "You Rock!",
+    "niceWork": "Nice Work!",
+    "niceTry": "Nice Try!",
+    "unlucky": "Unlucky!",
+    "subTitle": "You have scored {{score}} of {{questions}}",
+    "subTitleFailure": "It looks like that was a really hard topic.\nWhat about trying it again?",
+    "shareResults": "Share Results",
+    "tryAgain": "Try another video"
+  }
+}

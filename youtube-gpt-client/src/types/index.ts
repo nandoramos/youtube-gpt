@@ -37,3 +37,9 @@ export interface QuizItemColorVariants {
   border: string;
   _hover: SystemStyleObject | undefined;
 }
+
+export interface QuizPageResultProps {
+  questions?: number;
+  correct?: number;
+  wrong?: number;
+}
