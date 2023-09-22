@@ -1,0 +1,8 @@
+{
+  "search": "Search",
+  "learn": "Learn",
+  "quiz": "Quiz",
+  "start": "START",
+  "placeholder": "Paste your video link here",
+  "inputInvalidMessage": "It works only with Youtube videos."
+}

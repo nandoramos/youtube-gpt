@@ -1,9 +1,9 @@
-import { PropsWithChildren } from '@/types';
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+import { PropsWithChildren } from 'react';
 
 const MainContent = ({ children }: PropsWithChildren) => {
   return (
-    <Box
+    <Flex
       as="main"
       width="100%"
       backgroundColor="#fff"
@@ -12,7 +12,7 @@ const MainContent = ({ children }: PropsWithChildren) => {
       padding={['20px 10px', '55px 50px']}
     >
       {children}
-    </Box>
+    </Flex>
   );
 };
 

@@ -15,6 +15,7 @@ export interface QuestionQA {
   a: string;
   c: boolean;
 }
+
 export interface QuestionModel {
   q: string;
   as: QuestionQA[];
@@ -43,3 +44,9 @@ export interface QuizPageResultProps {
   correct?: number;
   wrong?: number;
 }
+
+export type SummaryData = {
+  id: string;
+  summary: string;
+  youtubeUrl: string;
+};
