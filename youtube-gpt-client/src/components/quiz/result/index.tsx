@@ -54,7 +54,9 @@ const QuizResult = ({ questions, correct }: QuizPageResultProps) => {
       >
         <GetResultTitle />
       </Text>
+
       <GetResultIcon />
+
       <Text
         textAlign="center"
         fontWeight="500"

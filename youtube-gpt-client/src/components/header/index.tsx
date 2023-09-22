@@ -48,9 +48,8 @@ const Header = () => {
           display={['flex', 'flex', 'none', 'none']}
         />
       </Flex>
-      {/* Mobile Content */}
       <Flex
-        minW="90%"
+        minW="100%"
         display={display}
         zIndex={20}
         h="100vh"
@@ -66,7 +65,7 @@ const Header = () => {
           <IconButton
             mt={2}
             mr={2}
-            aria-label="Open Menu"
+            aria-label="Close Menu"
             size="lg"
             icon={<CloseIcon />}
             onClick={() => changeDisplay('none')}
@@ -82,9 +81,15 @@ const Header = () => {
           fontSize="20px"
           gap="20px"
         >
-          <Link href="/">{t('home')}</Link>
-          <Link href="/how-it-works">{t('howItWorks')}</Link>
-          <Link href="/team">{t('team')}</Link>
+          <Link href="/" onClick={() => changeDisplay('none')}>
+            {t('home')}
+          </Link>
+          <Link href="/how-it-works" onClick={() => changeDisplay('none')}>
+            {t('howItWorks')}
+          </Link>
+          <Link href="/team" onClick={() => changeDisplay('none')}>
+            {t('team')}
+          </Link>
           <Flex w="100%" justifyContent="center">
             <LanguageSwitcher />
           </Flex>
