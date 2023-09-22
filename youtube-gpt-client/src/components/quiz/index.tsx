@@ -8,18 +8,45 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuizItem from './quizItem';
 import { getQuizQuestions } from '@/services/quiz';
 import { useRouter } from 'next/router';
+import { useElapsedTime } from 'use-elapsed-time';
 
 const Quiz = () => {
   const router = useRouter();
   const quizQuestions = getQuizQuestions();
   const [quizStatus, setQuizStatus] = useState<QuestionResponse[]>([]);
   const [tabIndex, setTabIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { elapsedTime } = useElapsedTime({ isPlaying });
+
+  const startTimer = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+    }
+  };
+
+  const stopTimer = () => {
+    setIsPlaying(false);
+  };
+
+  useEffect(() => {
+    startTimer();
+  });
+
+  function formatElapsedTimer(elapsed: number) {
+    const seconds = Math.floor(elapsed % 60);
+    const minutes = Math.floor((elapsed % 3600) / 60);
+
+    return `${minutes < 10 ? '0' : ''}${minutes}:${
+      seconds < 10 ? '0' : ''
+    }${seconds} `;
+  }
 
   const displayResults = (results: QuestionResponse[]) => {
+    stopTimer();
     router.push(
       {
         pathname: '/quiz/result',
@@ -27,6 +54,7 @@ const Quiz = () => {
           questions: quizQuestions.length,
           correct: results.filter((w) => w.response).length,
           wrong: results.filter((w) => w.response !== true).length,
+          time: formatElapsedTimer(elapsedTime),
         },
       },
       '/quiz/result',
@@ -69,7 +97,18 @@ const Quiz = () => {
   };
 
   return (
-    <>
+    <Flex flexDirection="column" alignItems="center" width="100%">
+      <Flex
+        width={['100%', '800px']}
+        justifyContent="end"
+        color="#0E6CCB"
+        fontSize={['20px', '30px']}
+        marginBottom={['20px', '0px']}
+        fontWeight="600"
+        paddingRight="20px"
+      >
+        {formatElapsedTimer(elapsedTime)}
+      </Flex>
       <Tabs
         variant="soft-rounded"
         width={['100%', '800px']}
@@ -124,7 +163,7 @@ const Quiz = () => {
           ))}
         </TabPanels>
       </Tabs>
-    </>
+    </Flex>
   );
 };
 

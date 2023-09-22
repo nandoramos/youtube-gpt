@@ -43,6 +43,7 @@ export interface QuizPageResultProps {
   questions?: number;
   correct?: number;
   wrong?: number;
+  time?:string;
 }
 
 export type SummaryData = {

@@ -7,6 +7,7 @@
     "unlucky": "Unlucky!",
     "subTitle": "You have scored {{score}} of {{questions}}",
     "subTitleFailure": "It looks like that was a really hard topic.\nWhat about trying it again?",
+    "time": "Time: {{time}}",
     "shareResults": "Share Results",
     "tryAgain": "Try another video"
   }

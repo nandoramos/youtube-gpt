@@ -74,6 +74,31 @@ export const getQuizQuestions = () => {
         c: false,
       },
     ]
+  },
+  {
+    q: "Another Cool Question?",
+    as: [
+      {
+        a: "Super cool right answer",
+        c: true,
+      },
+      {
+        a: "Super cool wrong answer",
+        c: false,
+      },
+      {
+        a: "Super cool wrong answer",
+        c: false,
+      },
+      {
+        a: "Super cool wrong answer",
+        c: false,
+      },
+      {
+        a: "Super cool wrong answer",
+        c: false,
+      },
+    ]
   }];
 
   return questions;
