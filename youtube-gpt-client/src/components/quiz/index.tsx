@@ -54,7 +54,10 @@ const Quiz = () => {
     ];
 
     setQuizStatus(response);
-    moveToNextQuestion(questionIndex, response);
+
+    setTimeout(function () {
+      moveToNextQuestion(questionIndex, response);
+    }, 600);
   };
 
   const canSelect = (questionIndex: number) => {

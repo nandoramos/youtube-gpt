@@ -16,7 +16,7 @@ const Header = () => {
         padding="15px 50px"
         color="#fff"
         height="60px"
-        display={['none', 'none', 'flex', 'flex']}
+        display={['none', 'flex']}
       >
         <Heading size="md">
           <Link href="/">Youtube GPT</Link>
@@ -34,7 +34,7 @@ const Header = () => {
         color="#fff"
         height="60px"
         width="100%"
-        display={['flex', 'flex', 'none', 'none']}
+        display={['flex', 'none']}
       >
         <Heading size="md">
           <Link href="/">Youtube GPT</Link>

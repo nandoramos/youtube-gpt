@@ -5,7 +5,14 @@ import QuizResult from '@/components/quiz/result';
 import { QuizPageResultProps } from '@/types';
 
 const QuizPage = ({ questions, correct, wrong }: QuizPageResultProps) => {
-  return <QuizResult questions={questions} correct={correct} wrong={wrong} />;
+  return (
+    <>
+      <Head>
+        <title>Youtube GPT - Quiz</title>
+      </Head>
+      <QuizResult questions={questions} correct={correct} wrong={wrong} />
+    </>
+  );
 };
 
 export default QuizPage;
