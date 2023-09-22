@@ -11,17 +11,17 @@ const DUMMY_SUMMARY = `
   Do ad veniam labore qui adipisicing irure. Voluptate esse laborum adipisicing veniam cupidatat ullamco ullamco. Minim occaecat officia cillum nulla ut id id consectetur velit do enim voluptate dolor adipisicing. Dolore nostrud ea voluptate voluptate mollit. In excepteur deserunt exercitation aliqua commodo in.
 `;
 
-export const getSummaryFromLink = (youtubeUrl: string) => {
+export const getSummaryFromLink = async (youtubeUrl: string) => {
   // HERE WE SHOULD CALL API WITH A GIVEN YOUTUBE URL
+
+  // RETURN DUMMY RESPONSE
   const randomOk = Math.random() > 0.5; // fails randomnly for testing
   return {
     ok: randomOk,
-    data: randomOk
-      ? {
-          id: Math.round(Math.random() * 100000000), // 8 digits id for testing
-          youtubeUrl,
-          summary: DUMMY_SUMMARY,
-        }
-      : {},
+    data: {
+      id: Math.round(Math.random() * 100000000), // 8 digits id for testing
+      youtubeUrl,
+      summary: DUMMY_SUMMARY,
+    },
   };
 };

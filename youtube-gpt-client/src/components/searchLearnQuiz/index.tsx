@@ -13,7 +13,7 @@ const SearchLearnQuiz = () => {
 
 
   const handleSubmit = async () => {
-    const res = getSummaryFromLink(videoUrl);
+    const res = await getSummaryFromLink(videoUrl);
 
     if (!res.ok) {
       alert('Something went wrong, please try again.');
@@ -23,8 +23,8 @@ const SearchLearnQuiz = () => {
 
     // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
     router.push(
-      { pathname: '/video-summary', query: res.data },
-      '/video-summary',
+      { pathname: `/video-summary/${res.data.id}`, query: res.data },
+      `/video-summary/${res.data.id}`,
     );
   };
 
