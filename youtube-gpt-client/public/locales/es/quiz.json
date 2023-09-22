@@ -1,0 +1,13 @@
+{
+  "title" : "Quiz",
+  "result": {
+    "youRock": "Tú Molas!",
+    "niceWork": "Buen Trabajo!",
+    "niceTry": "Buen Intento!",
+    "unlucky": "Desafortunado!",
+    "subTitle": "Has puntuado {{score}} de {{questions}}",
+    "subTitleFailure": "Parece que fue un tema realmente difícil.\n¿Qué tal si lo intentamos de nuevo?",
+    "shareResults": "Compartir Resultados",
+    "tryAgain": "Prueba con otro vídeo"
+  }
+}
