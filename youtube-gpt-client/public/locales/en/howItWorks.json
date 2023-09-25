@@ -1,7 +1,16 @@
 {
-  "title": "How it Works",
-  "features": {
-    "superCoolTitle": "Super Cool Title",
-    "genericDescription": "Aute aliquip tempor cillum adipisicing. Eiusmod aliqua eiusmod eiusmod consectetur quis non aute voluptate duis magna do nulla sint duis. Magna do consectetur nostrud laborum consectetur voluptate anim elit aliquip non consequat ipsum. Do nulla ut ipsum ea cillum pariatur quis et dolore deserunt irure ipsum. Ipsum do laborum velit do laboris Lorem consequat anim esse occaecat. Ad fugiat consequat sint ut minim. In aliquip ullamco laborum ex cillum amet esse ex non reprehenderit sunt."
+  "title": "Youtube GPT Project",
+  "subtitle": "An Automatic Video Summarization and Quiz Generation Platform",
+  "step1": {
+    "title": "Input the YouTube Video",
+    "text": "Visit our homepage and you will find a simple interface designed for quick access. Look for the input box labeled 'Paste your video link here' and click start"
+  },
+  "step2": {
+    "title": "Read the Summary",
+    "text": "You'll be redirected to a new page that displays a concise summary of the video content. Take a few moments to read through and familiarize yourself with the main points."
+  },
+  "step3": {
+    "title": "Take the Quiz",
+    "text": "Answer the questions to the best of your ability. Don't worry, it's all in good fun! Your score will be displayed immediately. See how well you understood the video content!"
   }
 }
