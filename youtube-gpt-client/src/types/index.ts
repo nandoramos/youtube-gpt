@@ -43,11 +43,20 @@ export interface QuizPageResultProps {
   questions?: number;
   correct?: number;
   wrong?: number;
-  time?:string;
+  time?: string;
 }
 
 export type SummaryData = {
   id: string;
   summary: string;
   youtubeUrl: string;
+};
+
+export type TeamMember = {
+  name: string,
+  role: string,
+  avatar: string,
+  description: string,
+  github: string,
+  email: string
 };
