@@ -65,6 +65,7 @@ export class VideoProcessService {
       const transcriptionText = transcription.text;
 
       return {
+        videoId,
         title,
         transcription: transcriptionText,
         summary,
