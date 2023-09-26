@@ -6,7 +6,8 @@ import { Quiz } from "./quiz.entity";
 export class QuizzesRepository extends Repository<Quiz> {
 
   async getQuiz(videoId: string, lang: Lang): Promise<Quiz> {
-    return await this.findOne({ videoId, lang });
+    // TODO: here I'm ignoring the language for now, should be updated
+    return await this.findOne({ videoId });
   }
 
   async createQuiz(

@@ -1,10 +1,18 @@
 import { getSummaryByVideoId } from '@/services/videoProcessing';
 import { SummaryData } from '@/types';
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import {
+  Container,
+  Stack,
+  Flex,
+  Box,
+  Heading,
+  Text,
+  Button,
+} from '@chakra-ui/react';
 
 interface Props {
   summaryData: SummaryData;
@@ -19,56 +27,88 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
   };
 
   const handleStartQuiz = () => {
-    router.push('/quiz')
-  }
+    router.push('/quiz');
+  };
 
   return (
-    <Flex gap="50px">
-      <Flex maxWidth="720px" width="100%" direction="column">
-        <iframe
-          width="100%"
-          height="315"
-          src={`https://www.youtube.com/embed/${summaryData.videoId}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-        <Flex justifyContent="flex-end" gap="20px" marginTop="20px">
+    <Container maxW={'7xl'}>
+      <Stack
+        align={'center'}
+        spacing={{ base: 8, md: 10 }}
+        alignItems={'flex-start'}
+        direction={{ base: 'column', md: 'row' }}
+      >
+        <Flex
+          flex={1}
+          justify={'center'}
+          align={'center'}
+          position={'relative'}
+          w={'full'}
+        >
           <Box
-            as="button"
-            backgroundColor="rgba(0, 122,  255, .1)"
-            color="#5893CE"
-            textTransform="uppercase"
-            padding="10px 25px"
-            borderRadius="10px"
-            fontWeight="bold"
-            _hover={{ boxShadow: '0 2px 6px rgba(0, 0, 0, .3)' }}
-            onClick={handleCancel}
+            position={'relative'}
+            height={'400px'}
+            rounded={'2xl'}
+            boxShadow={'2xl'}
+            width={'full'}
+            overflow={'hidden'}
           >
-            {t('cancel')}
-          </Box>
-          <Box
-            as="button"
-            backgroundColor="#5893CE"
-            color="#ffffff"
-            textTransform="uppercase"
-            padding="10px 25px"
-            borderRadius="10px"
-            fontWeight="bold"
-            _hover={{ boxShadow: '0 2px 6px rgba(0, 0, 0, .5)' }}
-            onClick={handleStartQuiz}
-          >
-            {t('startQuiz')}
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${summaryData.videoId}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </Box>
         </Flex>
-      </Flex>
-      <Flex direction="column" gap="30px" >
-        <Heading as="h3" textAlign="center" color="#0E6CCB">
-          {t('videoSummary')}
-        </Heading>
-        <Text>{summaryData.summary}</Text>
-      </Flex>
-    </Flex>
+        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+          <Heading
+            lineHeight={1.1}
+            fontWeight={600}
+            fontSize={{ base: '2xl', sm: '3xl', lg: '4xl' }}
+          >
+            <Text
+              as={'span'}
+              position={'relative'}
+              _after={{
+                content: "''",
+                width: 'full',
+                height: '30%',
+                position: 'absolute',
+                bottom: 1,
+                left: 0,
+                bg: 'red.400',
+                zIndex: -1,
+              }}
+            >
+              {summaryData.title}
+            </Text>
+          </Heading>
+          <Text color={'gray.500'}>{summaryData.summary}</Text>
+          <Stack
+            spacing={{ base: 4, sm: 6 }}
+            direction={{ base: 'column', sm: 'row' }}
+          >
+            <Button
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={6}
+              colorScheme={'red'}
+              bg={'#5893CE'}
+              _hover={{ bg: 'red.500' }}
+            >
+              {t('startQuiz')}
+            </Button>
+            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
+              {t('cancel')}
+            </Button>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Container>
   );
 };
 

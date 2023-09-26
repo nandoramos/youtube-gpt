@@ -31,9 +31,9 @@ const Header = () => {
         <Heading size="md">
         </Heading>
         <Flex gap="20px" fontSize="20px" fontWeight={'bold'} >
-          <Link href="/video-summary">{t('summaries')}</Link>
           <Link href="/how-it-works">{t('howItWorks')}</Link>
           <Link href="/team">{t('team')}</Link>
+          <Link href="/video-summary">{t('summaries')}</Link>
           <LanguageSwitcher />
         </Flex>
       </Flex>
