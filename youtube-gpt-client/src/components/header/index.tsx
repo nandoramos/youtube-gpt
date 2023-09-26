@@ -1,4 +1,4 @@
-import { Flex, Heading, IconButton } from '@chakra-ui/react';
+import { Flex, Heading, IconButton, Image } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/header/languageSwitcher';
 import Link from 'next/link';
@@ -20,21 +20,18 @@ const Header = () => {
         display={['none', 'flex']}
       >
         <Link href="/">
-          <img
+          <Image
             src={logo.src}
             alt="logo"
-            style={{
-              width: '200px',
-              zIndex: 100,
-              position: 'absolute',
-              top: '6px',
-            }}
+            width="200px"
+            objectFit="cover"
           />
         </Link>
 
         <Heading size="md">
         </Heading>
         <Flex gap="20px" fontSize="20px" fontWeight={'bold'} >
+          <Link href="/video-summary">{t('summaries')}</Link>
           <Link href="/how-it-works">{t('howItWorks')}</Link>
           <Link href="/team">{t('team')}</Link>
           <LanguageSwitcher />

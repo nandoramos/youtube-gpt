@@ -1,9 +1,7 @@
-import { SummaryData } from '@/types';
 import { getIdFromYoutubeVideoUrl } from '@/utils';
-import { YOUTUBE_REGEX, youtubeUrlRegex } from '@/utils/constans';
 
 const NGROCK =
-  'http://db9f-2800-a4-27dc-fc00-8539-c1ce-477a-8b27.ngrok.io/video-process';
+  'http://3466-167-62-124-242.ngrok.io/video-process';
 
 export const getAllSummaries = async () => {
   const response = await fetch(NGROCK);

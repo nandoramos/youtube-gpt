@@ -48,7 +48,7 @@ export interface QuizPageResultProps {
 
 export type SummaryData = {
   id: string;
-  text: string;
+  transcription: string;
   title: string;
   videoId: string;
 };
