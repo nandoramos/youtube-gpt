@@ -1,5 +1,5 @@
-import { SystemStyleObject } from "@chakra-ui/react";
-import { ReactElement } from "react";
+import { SystemStyleObject } from '@chakra-ui/react';
+import { ReactElement } from 'react';
 
 export interface PropsWithChildren {
   children?: ReactElement;
@@ -43,11 +43,14 @@ export interface QuizPageResultProps {
   questions?: number;
   correct?: number;
   wrong?: number;
-  time?:string;
+  time?: string;
 }
 
 export type SummaryData = {
   id: string;
   summary: string;
-  youtubeUrl: string;
+  text?: string;
+  title: string;
+  transcription: string;
+  videoId: string;
 };

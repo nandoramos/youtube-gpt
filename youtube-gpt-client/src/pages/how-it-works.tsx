@@ -42,6 +42,23 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
 
 const HowItWorks = () => {
   const { t } = useTranslation('howItWorks');
+  const features = [
+    {
+      title: 'step1.title',
+      description: 'step1.text',
+      icon: FcStart,
+    },
+    {
+      title: 'step2.title',
+      description: 'step2.text',
+      icon: FcRules,
+    },
+    {
+      title: 'step3.title',
+      description: 'step3.text',
+      icon: FcApprove,
+    },
+  ];
 
   return (
     <Box p={6}>
@@ -60,21 +77,14 @@ const HowItWorks = () => {
 
       <Box p={4} marginTop={'10px'}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-          <Feature
-            icon={<Icon as={FcStart} w={10} h={10} />}
-            title={t('step1.title')}
-            text={t('step1.text')}
-          />
-          <Feature
-            icon={<Icon as={FcRules} w={10} h={10} />}
-            title={t('step2.title')}
-            text={t('step2.text')}
-          />
-          <Feature
-            icon={<Icon as={FcApprove} w={10} h={10} />}
-            title={t('step3.title')}
-            text={t('step3.text')}
-          />
+          {features.map((feature) => (
+            <Feature
+              key={feature.title}
+              icon={<Icon as={feature.icon} w={10} h={10} />}
+              title={t(feature.title)}
+              text={t(feature.description)}
+            />
+          ))}
         </SimpleGrid>
       </Box>
     </Box>
