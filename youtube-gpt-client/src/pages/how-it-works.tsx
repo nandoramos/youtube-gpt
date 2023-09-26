@@ -1,58 +1,87 @@
-import { CSSProperties } from 'react';
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
-import { getFeatures } from '@/services/howItWorks';
+import { ReactElement } from 'react';
+import { FcStart, FcRules, FcApprove } from 'react-icons/fc';
+import {
+  Box,
+  Heading,
+  Text,
+  Icon,
+  SimpleGrid,
+  Flex,
+  Stack,
+} from '@chakra-ui/react';
 
-const indexDotStyle: CSSProperties = {
-  content: '""',
-  display: 'inline-block',
-  width: '8px',
-  height: '8px',
-  borderRadius: '4px',
-  backgroundColor: '#5893CE',
-  marginLeft: '5px',
+interface FeatureProps {
+  title: string;
+  text: string;
+  icon: ReactElement;
+}
+
+const Feature = ({ title, text, icon }: FeatureProps) => {
+  return (
+    <Stack>
+      <Flex
+        w={16}
+        h={16}
+        align={'center'}
+        justify={'center'}
+        color={'white'}
+        rounded={'full'}
+        bg={'gray.100'}
+        mb={1}
+      >
+        {icon}
+      </Flex>
+      <Text fontWeight={600}>{title}</Text>
+      <Text color={'gray.600'}>{text}</Text>
+    </Stack>
+  );
 };
 
 const HowItWorks = () => {
   const { t } = useTranslation('howItWorks');
-  const features = getFeatures();
 
   return (
-    <Box>
+    <Box p={6}>
       <Heading
-        as="h2"
-        textAlign="center"
-        fontWeight="semibold"
-        fontSize="32px"
-        color="#0E6CCB"
+        fontWeight={600}
+        fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+        lineHeight={'110%'}
+        w="90vw"
+        textAlign={'center'}
       >
-        {t('title')}
+        {t('title')} <br />
+        <Text as={'span'} color={'#0E6CCB'} fontSize={'28px'}>
+          {t('subtitle')}
+        </Text>
       </Heading>
-      <Grid templateColumns="repeat(2, 1fr)" gap="50px">
-        {features.map((feature, index) => (
-          <GridItem key={index} padding="30px">
-            <Box>
-              <Text _after={indexDotStyle} fontSize="36px" fontWeight="semibold">
-                {index + 1}
-              </Text>
-              <Heading fontSize="24px" fontWeight="semibold" margin="15px 0 10px">
-                {t(feature.title)}
-              </Heading>
-            </Box>
-            <Text fontSize='16px' fontWeight="medium" color="#828282">
-              {t(feature.description)}
-            </Text>
-          </GridItem>
-        ))}
-      </Grid>
+
+      <Box p={4} marginTop={'10px'}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+          <Feature
+            icon={<Icon as={FcStart} w={10} h={10} />}
+            title={t('step1.title')}
+            text={t('step1.text')}
+          />
+          <Feature
+            icon={<Icon as={FcRules} w={10} h={10} />}
+            title={t('step2.title')}
+            text={t('step2.text')}
+          />
+          <Feature
+            icon={<Icon as={FcApprove} w={10} h={10} />}
+            title={t('step3.title')}
+            text={t('step3.text')}
+          />
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 };
 
 export default HowItWorks;
-
 export const getStaticProps: GetStaticProps = async (context) => {
   let { locale } = context;
   return {

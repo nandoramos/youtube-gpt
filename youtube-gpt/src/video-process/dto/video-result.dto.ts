@@ -2,6 +2,9 @@ import { IsNotEmpty } from "class-validator";
 
 export class VideoResult {
   @IsNotEmpty()
+  videoId: string;
+
+  @IsNotEmpty()
   title: string;
 
   @IsNotEmpty()

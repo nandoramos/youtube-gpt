@@ -1,9 +1,10 @@
-import { Button, Flex, Heading, IconButton, Switch } from '@chakra-ui/react';
+import { Flex, Heading, IconButton } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/header/languageSwitcher';
 import Link from 'next/link';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
+import logo from '@/resources/imgs/logow.png';
 
 const Header = () => {
   const { t } = useTranslation('menu');
@@ -18,10 +19,22 @@ const Header = () => {
         height="60px"
         display={['none', 'flex']}
       >
+        <Link href="/">
+          <img
+            src={logo.src}
+            alt="logo"
+            style={{
+              width: '200px',
+              zIndex: 100,
+              position: 'absolute',
+              top: '6px',
+            }}
+          />
+        </Link>
+
         <Heading size="md">
-          <Link href="/">Youtube GPT</Link>
         </Heading>
-        <Flex gap="20px" fontSize="20px">
+        <Flex gap="20px" fontSize="20px" fontWeight={'bold'} >
           <Link href="/how-it-works">{t('howItWorks')}</Link>
           <Link href="/team">{t('team')}</Link>
           <LanguageSwitcher />
