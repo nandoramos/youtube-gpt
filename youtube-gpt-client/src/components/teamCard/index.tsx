@@ -7,7 +7,7 @@ import { BsGithub } from 'react-icons/bs'
 const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember) => {
 
   return (
-      <Card align='center' rounded='xl' boxShadow='2xl'>
+      <Card align='center' rounded='xl' boxShadow='2xl' width='320px'>
         <CardBody>
           <Image
             src={avatar}

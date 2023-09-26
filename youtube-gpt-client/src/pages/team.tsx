@@ -66,18 +66,16 @@ const Team = () => {
       >
         {t('title')}
       </Heading>
-      <Flex justifyContent="center" gap="30px" width='100%' >
+      <Flex justifyContent="center" gap="30px" width="100%" flexFlow="wrap">
         {members.map((member) => (
-          <Box width='30%'>
-            <TeamCard
-              name={member.name}
-              role={member.role}
-              avatar={member.avatar}
-              description={member.description}
-              github={member.github}
-              email={member.email}
-            />
-          </Box>
+          <TeamCard
+            name={member.name}
+            role={member.role}
+            avatar={member.avatar}
+            description={member.description}
+            github={member.github}
+            email={member.email}
+          />
         ))}
       </Flex>
     </Box>
