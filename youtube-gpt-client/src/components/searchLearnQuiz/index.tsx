@@ -13,18 +13,12 @@ const SearchLearnQuiz = () => {
 
 
   const handleSubmit = async () => {
-    const res = await getSummaryFromLink(videoUrl);
-
-    if (!res.ok) {
-      alert('Something went wrong, please try again.');
-      setVideoUrl('');
-      return;
-    }
+    const summary = await getSummaryFromLink(videoUrl);
 
     // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
     router.push(
-      { pathname: `/video-summary/${res.data.id}`, query: res.data },
-      `/video-summary/${res.data.id}`,
+      { pathname: `/video-summary/${summary.videoId}`, query: summary },
+      `/video-summary/${summary.videoId}`,
     );
   };
 
@@ -81,7 +75,7 @@ const SearchLearnQuiz = () => {
             color: '#fff',
             textTransform: 'uppercase',
           }}
-          isDisabled={isInputValid}
+          isDisabled={isInputValid || !videoUrl}
           onClick={handleSubmit}
         >
           {t('start')}

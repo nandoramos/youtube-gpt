@@ -48,6 +48,7 @@ export interface QuizPageResultProps {
 
 export type SummaryData = {
   id: string;
-  summary: string;
-  youtubeUrl: string;
+  text: string;
+  title: string;
+  videoId: string;
 };
