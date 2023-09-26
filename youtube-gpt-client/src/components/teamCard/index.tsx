@@ -1,32 +1,34 @@
 import { TeamMember } from '@/types';
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, Box, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { EmailIcon } from '@chakra-ui/icons';
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Box, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { BsGithub } from 'react-icons/bs'
-import { MdEmail} from 'react-icons/md'
 
 // const TeamCard = ({ name, avatar, description }: TeamMember) => {
 const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember) => {
+
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" minH="300px">
-      <Card maxW='sm'>
+    <Box boxShadow='2xl' rounded='md'>
+      <Card align='center' width='320px' height='455px'>
         <CardBody>
           <Image
             src={avatar}
             alt={name}
-            borderRadius='lg'
+            width='278px'
+            height='220px'
+            objectFit='cover'
           />
-          <Stack mt='6' spacing='3'>
+          <Stack mt='6' spacing='3' align='center'>
             <Heading size='md'>{name}</Heading>
-            <Text>
+            <Text fontSize='14px' color='#7E7E7E'>
               {role}
             </Text>
-            <Text>
+            <Text fontSize='12px' >
               {description}
             </Text>
           </Stack>
         </CardBody>
-        <Divider />
         <CardFooter>
-          <ButtonGroup spacing='2'>
+          <ButtonGroup spacing='1'>
             <Box as="a" href={github}>
               <IconButton
                 aria-label="github"
@@ -44,10 +46,11 @@ const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember
 
             <Box as="a" href={email}>
               <IconButton
-                aria-label="twitter"
+                aria-label="email"
                 variant="ghost"
                 size="lg"
-                icon={<MdEmail size="28px" />}
+                fontSize="3xl"
+                icon={<EmailIcon />}
                 _hover={{
                   bg: 'blue.500',
                   color: useColorModeValue('white', 'gray.700'),
