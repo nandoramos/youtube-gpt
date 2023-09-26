@@ -36,7 +36,7 @@ const VideoSummaryList = ({ summaries }: Props) => {
                   <Heading as="h3" fontSize="20px">
                     {summary.title}
                   </Heading>
-                  <Text noOfLines={5}>{summary.transcription}</Text>
+                  <Text noOfLines={5}>{summary.text}</Text>
                 </Flex>
               </Flex>
             </CardBody>

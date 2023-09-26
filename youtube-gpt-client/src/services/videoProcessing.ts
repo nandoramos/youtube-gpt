@@ -34,7 +34,12 @@ export const getSummaryFromLink = async (youtubeUrl: string, lang?: string) => {
   const response = await fetch(
     `${NGROCK}/${videoId}?lang=${lang ? lang : 'en'}`,
   );
-  const summary = await getSummaryByVideoId(videoId);
+  const summary = await response.json();
+
+  if (!summary) {
+    // if error return
+    return;
+  }
 
   return summary;
 };

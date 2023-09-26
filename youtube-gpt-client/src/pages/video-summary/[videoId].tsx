@@ -62,11 +62,11 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
           </Box>
         </Flex>
       </Flex>
-      <Flex direction="column" gap="30px">
+      <Flex direction="column" gap="30px" >
         <Heading as="h3" textAlign="center" color="#0E6CCB">
           {t('videoSummary')}
         </Heading>
-        <Text>{summaryData.transcription}</Text>
+        <Text>{summaryData.summary}</Text>
       </Flex>
     </Flex>
   );
