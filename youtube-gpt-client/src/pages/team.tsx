@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Box, Grid, GridItem, Heading } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import TeamCard from '@/components/teamCard';
 
 const members = [
@@ -66,9 +66,9 @@ const Team = () => {
       >
         {t('title')}
       </Heading>
-      <Grid templateColumns="repeat(4, 1fr)" gap="30px" rowGap='70px'>
+      <Flex justifyContent="center" gap="30px" width='100%' >
         {members.map((member) => (
-          <GridItem display="flex" justifyContent="center">
+          <Box width='30%'>
             <TeamCard
               name={member.name}
               role={member.role}
@@ -77,9 +77,9 @@ const Team = () => {
               github={member.github}
               email={member.email}
             />
-          </GridItem>
+          </Box>
         ))}
-      </Grid>
+      </Flex>
     </Box>
   );
 };
