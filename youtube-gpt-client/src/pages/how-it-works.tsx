@@ -1,4 +1,3 @@
-
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -13,7 +12,6 @@ import {
   Flex,
   Stack,
 } from '@chakra-ui/react';
-
 
 interface FeatureProps {
   title: string;
@@ -56,9 +54,7 @@ const HowItWorks = () => {
       >
         {t('title')} <br />
         <Text as={'span'} color={'#0E6CCB'} fontSize={'28px'}>
-        {t('subtitle')}
-
-
+          {t('subtitle')}
         </Text>
       </Heading>
 
@@ -83,7 +79,7 @@ const HowItWorks = () => {
       </Box>
     </Box>
   );
-}
+};
 
 export default HowItWorks;
 export const getStaticProps: GetStaticProps = async (context) => {
