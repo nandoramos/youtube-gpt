@@ -7,8 +7,8 @@ import { BsGithub } from 'react-icons/bs'
 const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember) => {
 
   return (
-    <Box boxShadow='2xl' rounded='md'>
-      <Card align='center' width='320px' height='455px'>
+    <Box width='320px' height='455px'>
+      <Card align='center' rounded='xl' boxShadow='2xl'>
         <CardBody>
           <Image
             src={avatar}
@@ -18,7 +18,7 @@ const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember
             objectFit='cover'
           />
           <Stack mt='6' spacing='3' align='center'>
-            <Heading size='md'>{name}</Heading>
+            <Heading size='md' fontSize='18px'>{name}</Heading>
             <Text fontSize='14px' color='#7E7E7E'>
               {role}
             </Text>
@@ -44,7 +44,7 @@ const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember
               />
             </Box>
 
-            <Box as="a" href={email}>
+            <Box as="a" href={`mailto:${email}`}>
               <IconButton
                 aria-label="email"
                 variant="ghost"
