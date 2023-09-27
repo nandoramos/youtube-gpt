@@ -62,7 +62,7 @@ const HowItWorks = () => {
 
   return (
     <Box p={6}>
-      <Heading
+      <Heading py={10}
         fontWeight={600}
         fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
         lineHeight={'110%'}
@@ -75,7 +75,7 @@ const HowItWorks = () => {
         </Text>
       </Heading>
 
-      <Box p={4} marginTop={'10px'}>
+      <Box p={6} marginTop={'10px'}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           {features.map((feature) => (
             <Feature

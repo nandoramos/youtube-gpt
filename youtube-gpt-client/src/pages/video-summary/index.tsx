@@ -26,7 +26,7 @@ const VideoSummaryList = ({ summaries }: Props) => {
             <CardBody>
               <Flex gap="30px">
                 <Image
-                  boxSize="150px"
+                  height={'150px'}
                   objectFit="cover"
                   src={`https://img.youtube.com/vi/${summary.videoId}/0.jpg`}
                   fallbackSrc="https://via.placeholder.com/150"

@@ -6,7 +6,8 @@ import { Lang } from "../video-process/dto/process-video.dto";
 export class SummariesRepository extends Repository<Summary> {
 
   async getSummary(videoId: string, lang: Lang): Promise<Summary> {
-    return await this.findOne({ videoId, lang});
+    // TODO: here I'm ignoring the language for now, should be updated
+    return await this.findOne({ videoId });
   }
 
   async createSummary(

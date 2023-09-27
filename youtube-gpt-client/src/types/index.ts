@@ -59,3 +59,12 @@ export type SummaryData = {
   videoId: string;
   quiz: string;
 };
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  avatar: string;
+  description: string;
+  github: string;
+  email: string;
+};
