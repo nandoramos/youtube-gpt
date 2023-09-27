@@ -15,14 +15,20 @@ const VideoSummaryList = ({ summaries }: Props) => {
 
   return (
     <Flex direction="column" width="100%" gap="30px" alignItems="center">
-      <Heading textAlign="center" color="#0E6CCB">{t('title')}</Heading>
+      <Heading textAlign="center" color="#0E6CCB">
+        {t('title')}
+      </Heading>
       {summaries.map((summary: SummaryData) => (
         <Link
           key={summary.id}
           href={`/video-summary/${summary.videoId}`}
           style={{ width: '80%' }}
         >
-          <Card _hover={{ boxShadow: '0 2px 6px rgba(0, 0, 0, .2)' }}>
+          <Card
+            boxShadow="0 2px 6px rgba(0, 0, 0, .2)"
+            _hover={{ transform: 'scale(1.02)' }}
+            transition=".1s ease-in"
+          >
             <CardBody>
               <Flex gap="30px">
                 <Image

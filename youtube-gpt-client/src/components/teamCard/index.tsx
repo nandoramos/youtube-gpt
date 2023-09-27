@@ -24,7 +24,14 @@ const TeamCard = ({
   email,
 }: TeamMember) => {
   return (
-    <Card align="center" rounded="xl" boxShadow="2xl" width="320px">
+    <Card
+      align="center"
+      rounded="xl"
+      boxShadow="2xl"
+      width="320px"
+      _hover={{ transform: 'scale(1.02)' }}
+      transition=".1s ease-in"
+    >
       <CardBody>
         <Image
           src={avatar}

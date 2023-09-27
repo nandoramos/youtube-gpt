@@ -74,6 +74,7 @@ const Team = () => {
       <Flex justifyContent="center" gap="30px" width="100%" flexFlow="wrap">
         {members.map((member) => (
           <TeamCard
+            key={member.name}
             name={member.name}
             role={member.role}
             avatar={getAvatar(member)}
