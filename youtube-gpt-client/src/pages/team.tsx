@@ -20,7 +20,7 @@ const members = [
     role: 'Backend Dev, UI Designer',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
+      'A creature who lives in a mix world of hippies and devs. Believe in peace, love, and clean code.',
     github: 'nandoramos',
     email: 'nando@tarmac.io',
   },
@@ -29,7 +29,7 @@ const members = [
     role: 'Backend Dev',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
     github: 'frosastn',
     email: 'florencia.rosas@tarmac.io',
   },
@@ -38,7 +38,7 @@ const members = [
     role: 'Frontend Dev',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
     github: 'nnicolopez',
     email: 'nicolas.lopez@tarmac.io',
   },
