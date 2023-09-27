@@ -6,49 +6,49 @@ import TeamCard from '@/components/teamCard';
 
 const members = [
   {
-    name: '1 Lorem ipsum',
-    role: 'Lorem',
-    avatar: 'https://i.blogs.es/ef92d3/avatar-sentido-del-agua/450_1000.jpg',
+    name: 'Anderson Oliveira',
+    role: 'Frontend Dev, UI Designer',
+    avatar: '',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
-    github: 'https://github.com/nandoramos/youtube-gpt/1',
-    email: 'hola@tarmac.io',
+    github: 'anderson-olive',
+    email: 'anderson.oliveira@tarmac.io',
   },
   {
-    name: '2 Lorem ipsum',
-    role: 'Perspiciatis',
-    avatar: 'https://i.blogs.es/ef92d3/avatar-sentido-del-agua/450_1000.jpg',
+    name: 'Fernando Ramos',
+    role: 'Backend Dev, UI Designer',
+    avatar: '',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
-    github: 'https://github.com/nandoramos/youtube-gpt/2',
-    email: 'hola@tarmac.io',
+    github: 'nandoramos',
+    email: 'nando@tarmac.io',
   },
   {
-    name: '3 Lorem ipsum',
-    role: 'Omnis',
-    avatar: 'https://i.blogs.es/ef92d3/avatar-sentido-del-agua/450_1000.jpg',
+    name: 'Florencia Rosas',
+    role: 'Backend Dev',
+    avatar: '',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
-    github: 'https://github.com/nandoramos/youtube-gpt/3',
-    email: 'hola@tarmac.io',
+    github: 'frosastn',
+    email: 'florencia.rosas@tarmac.io',
   },
   {
-    name: '4 Lorem ipsum',
-    role: 'Natus',
-    avatar: 'https://i.blogs.es/ef92d3/avatar-sentido-del-agua/450_1000.jpg',
+    name: 'Nicolás López',
+    role: 'Frontend Dev',
+    avatar: '',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
-    github: 'https://github.com/nandoramos/youtube-gpt/4',
-    email: 'hola@tarmac.io',
+    github: 'nnicolopez',
+    email: 'nicolas.lopez@tarmac.io',
   },
   {
-    name: '5 Lorem ipsum',
-    role: 'Natus',
-    avatar: 'https://i.blogs.es/ef92d3/avatar-sentido-del-agua/450_1000.jpg',
+    name: 'Paula Pereyra',
+    role: 'Frontend Dev',
+    avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. ',
-    github: 'https://github.com/nandoramos/youtube-gpt/4',
-    email: 'hola@tarmac.io',
+      'I\'m just a girl asking my code to work so I can eat, travel & do murga',
+    github: 'paullieness',
+    email: 'paula.pereyra@tarmac.io',
   },
 ];
 
@@ -71,9 +71,9 @@ const Team = () => {
           <TeamCard
             name={member.name}
             role={member.role}
-            avatar={member.avatar}
+            avatar={`https://github.com/${member.github}.png`}
             description={member.description}
-            github={member.github}
+            github={`https://github.com/${member.github}`}
             email={member.email}
           />
         ))}

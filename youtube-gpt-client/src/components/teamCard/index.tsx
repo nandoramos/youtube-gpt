@@ -28,7 +28,7 @@ const TeamCard = ({ name, role, avatar, description, github, email }: TeamMember
         </CardBody>
         <CardFooter>
           <ButtonGroup spacing='1'>
-            <Box as="a" href={github}>
+            <Box as="a" href={github} target='_blank'>
               <IconButton
                 aria-label="github"
                 variant="ghost"
