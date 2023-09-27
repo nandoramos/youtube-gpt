@@ -1,4 +1,4 @@
-import { QuestionModel, QuestionResponse } from '@/types';
+import { QuestionModelList, QuestionResponse } from '@/types';
 import {
   Tabs,
   TabList,
@@ -10,13 +10,11 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import QuizItem from './quizItem';
-import { getQuizQuestions } from '@/services/quiz';
 import { useRouter } from 'next/router';
 import { useElapsedTime } from 'use-elapsed-time';
 
-const Quiz = () => {
+const Quiz = ({ quizQuestions }: QuestionModelList) => {
   const router = useRouter();
-  const quizQuestions: QuestionModel[] = getQuizQuestions();
   const [quizStatus, setQuizStatus] = useState<QuestionResponse[]>([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -36,14 +34,14 @@ const Quiz = () => {
     startTimer();
   });
 
-  function formatElapsedTimer(elapsed: number) {
+  const formatElapsedTimer = (elapsed: number) => {
     const seconds = Math.floor(elapsed % 60);
     const minutes = Math.floor((elapsed % 3600) / 60);
 
     return `${minutes < 10 ? '0' : ''}${minutes}:${
       seconds < 10 ? '0' : ''
     }${seconds} `;
-  }
+  };
 
   const displayResults = (results: QuestionResponse[]) => {
     stopTimer();

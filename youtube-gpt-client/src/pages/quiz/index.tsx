@@ -10,7 +10,7 @@ const QuizPage = () => {
         <title>Youtube GPT - Quiz</title>
       </Head>
 
-      <Quiz />
+      <>TODO ADD, QUIZ NOT FOUND COMPONENT</>
     </>
   );
 };
