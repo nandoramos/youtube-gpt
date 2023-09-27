@@ -54,3 +54,12 @@ export type SummaryData = {
   transcription: string;
   videoId: string;
 };
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  avatar: string;
+  description: string;
+  github: string;
+  email: string;
+};
