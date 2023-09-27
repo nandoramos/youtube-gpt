@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Box, Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import TeamCard from '@/components/teamCard';
+import { TeamMember } from '@/types';
 
 const members = [
   {
@@ -52,6 +53,10 @@ const members = [
   },
 ];
 
+const getAvatar = (member: TeamMember) : string => {
+  return member.avatar || `https://github.com/${member.github}.png`;
+};
+
 const Team = () => {
   const { t } = useTranslation('team');
   return (
@@ -71,7 +76,7 @@ const Team = () => {
           <TeamCard
             name={member.name}
             role={member.role}
-            avatar={`https://github.com/${member.github}.png`}
+            avatar={getAvatar(member)}
             description={member.description}
             github={`https://github.com/${member.github}`}
             email={member.email}
@@ -92,3 +97,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   };
 };
+
+
