@@ -38,7 +38,7 @@ const members = [
     role: 'Frontend Dev',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
+      'I have mainly worked with React and Angular in the last 5 years in addition to other less popular technologies. I have the joy of working at tarmac for a year now. But technology is not all in life, I also love playing music and sports.',
     github: 'nnicolopez',
     email: 'nicolas.lopez@tarmac.io',
   },
@@ -47,7 +47,7 @@ const members = [
     role: 'Frontend Dev',
     avatar: '',
     description:
-      "I'm just a girl asking my code to work so I can eat, travel & do murga",
+      "I'm just a girl asking my code to work so I can eat, travel & do murga.",
     github: 'paullieness',
     email: 'paula.pereyra@tarmac.io',
   },
