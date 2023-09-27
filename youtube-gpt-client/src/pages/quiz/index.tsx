@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
-import Quiz from '@/components/quiz';
 
-const QuizPage = () => {
+const QuizIndex = () => {
   return (
     <>
       <Head>
@@ -15,7 +14,7 @@ const QuizPage = () => {
   );
 };
 
-export default QuizPage;
+export default QuizIndex;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let { locale } = context;

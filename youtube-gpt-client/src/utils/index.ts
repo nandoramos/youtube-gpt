@@ -1,4 +1,4 @@
-import { youtubeUrlRegex } from './constans';
+import { youtubeUrlRegex } from './constants';
 
 export const getIdFromYoutubeVideoUrl = async (youtubeUrl: string) => {
   const match = youtubeUrl.match(youtubeUrlRegex);
