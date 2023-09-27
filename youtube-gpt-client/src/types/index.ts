@@ -21,6 +21,10 @@ export interface QuestionModel {
   as: QuestionQA[];
 }
 
+export interface QuestionModelList {
+  quizQuestions: QuestionModel[];
+}
+
 export interface QuestionResponse {
   questionIndex: number;
   response: boolean;
@@ -53,4 +57,5 @@ export type SummaryData = {
   title: string;
   transcription: string;
   videoId: string;
+  quiz: string;
 };

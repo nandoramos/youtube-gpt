@@ -19,8 +19,8 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
   };
 
   const handleStartQuiz = () => {
-    router.push('/quiz')
-  }
+    router.push(`/quiz/${summaryData.videoId}`);
+  };
 
   return (
     <Flex gap="50px">
@@ -62,7 +62,7 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
           </Box>
         </Flex>
       </Flex>
-      <Flex direction="column" gap="30px" >
+      <Flex direction="column" gap="30px">
         <Heading as="h3" textAlign="center" color="#0E6CCB">
           {t('videoSummary')}
         </Heading>
