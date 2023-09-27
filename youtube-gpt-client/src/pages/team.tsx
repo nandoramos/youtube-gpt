@@ -47,13 +47,13 @@ const members = [
     role: 'Frontend Dev',
     avatar: '',
     description:
-      'I\'m just a girl asking my code to work so I can eat, travel & do murga',
+      "I'm just a girl asking my code to work so I can eat, travel & do murga",
     github: 'paullieness',
     email: 'paula.pereyra@tarmac.io',
   },
 ];
 
-const getAvatar = (member: TeamMember) : string => {
+const getAvatar = (member: TeamMember): string => {
   return member.avatar || `https://github.com/${member.github}.png`;
 };
 
@@ -97,5 +97,3 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   };
 };
-
-

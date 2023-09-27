@@ -1,5 +1,5 @@
-import { SystemStyleObject } from "@chakra-ui/react";
-import { ReactElement } from "react";
+import { SystemStyleObject } from '@chakra-ui/react';
+import { ReactElement } from 'react';
 
 export interface PropsWithChildren {
   children?: ReactElement;
@@ -53,10 +53,10 @@ export type SummaryData = {
 };
 
 export type TeamMember = {
-  name: string,
-  role: string,
-  avatar: string,
-  description: string,
-  github: string,
-  email: string
+  name: string;
+  role: string;
+  avatar: string;
+  description: string;
+  github: string;
+  email: string;
 };
