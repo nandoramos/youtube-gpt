@@ -27,7 +27,7 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
   };
 
   const handleStartQuiz = () => {
-    router.push('/quiz');
+    router.push(`/quiz/${summaryData.videoId}`);
   };
 
   return (
@@ -99,10 +99,17 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
               colorScheme={'red'}
               bg={'#5893CE'}
               _hover={{ bg: 'red.500' }}
+              onClick={handleStartQuiz}
             >
               {t('startQuiz')}
             </Button>
-            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
+            <Button
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={6}
+              onClick={handleCancel}
+            >
               {t('cancel')}
             </Button>
           </Stack>
