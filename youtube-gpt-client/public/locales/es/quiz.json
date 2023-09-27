@@ -9,6 +9,7 @@
     "subTitleFailure": "Parece que fue un tema realmente difícil.\n¿Qué tal si lo intentamos de nuevo?",
     "time": "Tiempo: {{time}}",
     "shareResults": "Compartir Resultados",
-    "tryAgain": "Prueba con otro vídeo"
+    "tryAgain": "Prueba de nuevo",
+    "tryAnother": "Prueba con otro vídeo"
   }
 }

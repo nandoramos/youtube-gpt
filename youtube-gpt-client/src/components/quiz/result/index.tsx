@@ -2,7 +2,7 @@ import BronzeMedalIcon from '@/resources/svg/BronzeMedalIcon';
 import SilverMedalIcon from '@/resources/svg/SilverMedalIcon';
 import TrophyStarIcon from '@/resources/svg/TrophyStarIcon';
 import { QuizPageResultProps } from '@/types';
-import { Flex, Text, Button } from '@chakra-ui/react';
+import { Flex, Text, Button, Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
@@ -14,8 +14,12 @@ const QuizResult = ({ questions, correct, time }: QuizPageResultProps) => {
     questions !== undefined && correct !== undefined && correct > 0;
   const percentageBreakPoint = 0.5;
 
-  const handleGoHome = () => {
+  const handleCancel = () => {
     router.push('/');
+  };
+
+  const handleStartQuiz = () => {
+    router.back();
   };
 
   const GetResultTitle = () => {
@@ -90,16 +94,32 @@ const QuizResult = ({ questions, correct, time }: QuizPageResultProps) => {
         })}
       </Text>
       <Flex flexDirection="row" gap="16px" alignItems="center">
-        <Button
-          minW="145px"
-          fontSize="14px"
-          bg="#5893CE"
-          borderRadius="8px"
-          color="#FFFFFF"
-          onClick={handleGoHome}
+        <Stack
+          spacing={{ base: 4, sm: 6 }}
+          direction={{ base: 'column', sm: 'row' }}
         >
-          {t('result.tryAgain')}
-        </Button>
+          <Button
+            rounded={'full'}
+            size={'lg'}
+            fontWeight={'normal'}
+            px={6}
+            colorScheme={'red'}
+            bg={'#5893CE'}
+            _hover={{ bg: 'red.500' }}
+            onClick={handleStartQuiz}
+          >
+            {t('result.tryAgain')}
+          </Button>
+          <Button
+            rounded={'full'}
+            size={'lg'}
+            fontWeight={'normal'}
+            px={6}
+            onClick={handleCancel}
+          >
+            {t('result.tryAnother')}
+          </Button>
+        </Stack>
       </Flex>
     </Flex>
   );
