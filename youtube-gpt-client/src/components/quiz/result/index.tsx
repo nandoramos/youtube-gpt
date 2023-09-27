@@ -3,13 +3,20 @@ import SilverMedalIcon from '@/resources/svg/SilverMedalIcon';
 import TrophyStarIcon from '@/resources/svg/TrophyStarIcon';
 import { QuizPageResultProps } from '@/types';
 import { Flex, Text, Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
 const QuizResult = ({ questions, correct, time }: QuizPageResultProps) => {
   const { t } = useTranslation('quiz');
+  const router = useRouter();
+
   const userHasCorrectAnswer =
     questions !== undefined && correct !== undefined && correct > 0;
   const percentageBreakPoint = 0.5;
+
+  const handleGoHome = () => {
+    router.push('/');
+  };
 
   const GetResultTitle = () => {
     if (userHasCorrectAnswer) {
@@ -83,23 +90,13 @@ const QuizResult = ({ questions, correct, time }: QuizPageResultProps) => {
         })}
       </Text>
       <Flex flexDirection="row" gap="16px" alignItems="center">
-        {userHasCorrectAnswer && (
-          <Button
-            minW="145px"
-            fontSize="14px"
-            color="#5893CE"
-            bg="rgba(0, 122, 255, 0.10)"
-            borderRadius="8px"
-          >
-            {t('result.shareResults')}
-          </Button>
-        )}
         <Button
           minW="145px"
           fontSize="14px"
           bg="#5893CE"
           borderRadius="8px"
           color="#FFFFFF"
+          onClick={handleGoHome}
         >
           {t('result.tryAgain')}
         </Button>

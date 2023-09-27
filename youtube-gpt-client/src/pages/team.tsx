@@ -11,14 +11,14 @@ const members = [
     role: 'Frontend Dev, UI Designer',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
+      "Gaming and tech enthusiast, have some skills in C#, Xamarin, JavaScript, and frontend development, all while trying to keep my feline friends from writing code – they're quite persuasive!",
     github: 'anderson-olive',
     email: 'anderson.oliveira@tarmac.io',
   },
   {
     name: 'Fernando Ramos',
     role: 'Backend Dev, UI Designer',
-    avatar: '',
+    avatar: 'https://lh3.googleusercontent.com/a/ACg8ocIpUWD-sauEhNCr67PIv0y4P-qlnk8BoowHSiIGVvt47Rk=s576-c-no',
     description:
       'A creature who lives in a mix world of hippies and devs. Believe in peace, love, and clean code.',
     github: 'nandoramos',
@@ -29,7 +29,7 @@ const members = [
     role: 'Backend Dev',
     avatar: '',
     description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
+      "When I'm not coding, I'm perfecting my Bachata moves. The artistry of dance inspires my work.",
     github: 'frosastn',
     email: 'florencia.rosas@tarmac.io',
   },
@@ -45,9 +45,9 @@ const members = [
   {
     name: 'Paula Pereyra',
     role: 'Frontend Dev',
-    avatar: '',
+    avatar: 'https://lh3.googleusercontent.com/a/ACg8ocKHq1pd0mMq6wa5GiilN-xZYchNt5SD32UYeaVIEXgahw=s288-c-no',
     description:
-      "I'm just a girl asking my code to work so I can eat, travel & do murga.",
+      "I'm just a girl sitting in front of a computer asking my code to work so I can eat, travel & do murga.",
     github: 'paullieness',
     email: 'paula.pereyra@tarmac.io',
   },
