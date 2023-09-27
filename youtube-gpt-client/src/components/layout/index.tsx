@@ -2,6 +2,7 @@ import { Flex, Skeleton } from '@chakra-ui/react';
 import Header from '@/components/header';
 import MainContent from '@/components/mainContent';
 import { PropsWithChildren } from '@/types';
+import Footer from '../footer';
 
 const Layout = ({ children, isClientLoaded }: PropsWithChildren) => {
   if (!isClientLoaded) {
@@ -12,6 +13,7 @@ const Layout = ({ children, isClientLoaded }: PropsWithChildren) => {
     <Flex direction="column" width="100vw" height="100%">
       <Header />
       <MainContent>{children}</MainContent>
+      <Footer />
     </Flex>
   );
 };

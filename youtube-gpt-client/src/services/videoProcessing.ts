@@ -1,7 +1,7 @@
 import { getIdFromYoutubeVideoUrl } from '@/utils';
 
 const NGROCK =
-  'http://3466-167-62-124-242.ngrok.io/video-process';
+  'http://6090-2800-a4-2714-3500-542d-5589-6ba7-78f4.ngrok.io/video-process';
 
 export const getAllSummaries = async () => {
   const response = await fetch(NGROCK);

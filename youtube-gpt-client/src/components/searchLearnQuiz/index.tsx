@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Button, Flex, Input, Spinner, Text } from '@chakra-ui/react';
 import SearchLearnQuizIcon from '../searchLearnQuizIcon';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -8,12 +8,14 @@ import { YOUTUBE_REGEX } from '@/utils/constans';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
+  const [showSpinner, setShowSpinner] = useState(false);
   const router = useRouter();
   const { t } = useTranslation('home');
 
-
   const handleSubmit = async () => {
+    setShowSpinner(true);
     const summary = await getSummaryFromLink(videoUrl);
+    setShowSpinner(false);
 
     // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
     router.push(
@@ -26,6 +28,31 @@ const SearchLearnQuiz = () => {
     () => !videoUrl.match(YOUTUBE_REGEX) && videoUrl !== '',
     [videoUrl],
   );
+  const OverlaySpinner = () => {
+    if (showSpinner) {
+      return (
+        <Flex
+          position="fixed"
+          top="0"
+          right="0"
+          bottom="0"
+          left="0"
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="rgba(0, 0, 0, 0.3)" // semi-transparent white
+          zIndex="1000"
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </Flex>
+      );
+    }
+  };
 
   return (
     <Flex width="700px" direction="column" margin="0 auto">
@@ -37,12 +64,7 @@ const SearchLearnQuiz = () => {
           <Text>{t('quiz')}</Text>
         </Flex>
       </Flex>
-      <Flex
-        width="90%"
-        alignSelf="end"
-        alignItems="center"
-        position="relative"
-      >
+      <Flex width="90%" alignSelf="end" alignItems="center" position="relative">
         <Input
           type="url"
           placeholder={t('placeholder')}
@@ -50,9 +72,7 @@ const SearchLearnQuiz = () => {
           variant="unstyled"
           style={{
             backgroundColor: '#F5F5F5',
-            boxShadow: isInputValid
-              ? '0 1px 4px rgb(200, 0, 0, .5)'
-              : '',
+            boxShadow: isInputValid ? '0 1px 4px rgb(200, 0, 0, .5)' : '',
             borderRadius: '20px',
             border: '2px solid #fff',
             zIndex: 2,
@@ -75,7 +95,7 @@ const SearchLearnQuiz = () => {
             color: '#fff',
             textTransform: 'uppercase',
           }}
-          isDisabled={isInputValid || !videoUrl}
+          isDisabled={isInputValid || !videoUrl || showSpinner}
           onClick={handleSubmit}
         >
           {t('start')}
@@ -93,6 +113,7 @@ const SearchLearnQuiz = () => {
           </Text>
         )}
       </Flex>
+      <OverlaySpinner />
     </Flex>
   );
 };
