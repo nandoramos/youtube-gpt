@@ -159,14 +159,7 @@ export class VideoProcessService {
         this.questions[2][lang],
         750
       );
-      console.log("quiz generated: " + quizGenerated);
       const stringQuiz = JSON.stringify(quizGenerated);
-
-      console.log("stringQuiz");
-      console.log(stringQuiz);
-
-      console.log(JSON.parse(stringQuiz));
-
       this.processDataService.createQuiz(videoId, stringQuiz, lang);
       return quizGenerated;
     }
