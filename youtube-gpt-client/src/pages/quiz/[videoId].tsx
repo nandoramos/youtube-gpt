@@ -12,6 +12,7 @@ interface Props {
 const QuizVideoDetail = ({ summaryData }: Props) => {
   const { t } = useTranslation('quiz');
 
+  // AGREGAR UN IF ACA DE QUE SI NO HAY QUIZ, MOSTRAR EL MISMO COMPONENTE DE NO QUIZ QUE EN EL INDEX
   // este doble parse está rarísimo pero funciona, hay que revisarlo
   return <Quiz quizQuestions={JSON.parse(JSON.parse(summaryData.quiz))} />;
 };
