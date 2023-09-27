@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { getSummaryFromLink } from '@/services/videoProcessing';
-import { YOUTUBE_REGEX } from '@/utils/constans';
+import { YOUTUBE_REGEX } from '@/utils/constants';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
