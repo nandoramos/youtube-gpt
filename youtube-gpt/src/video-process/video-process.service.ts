@@ -1,5 +1,9 @@
 import { OpenaiService } from "../openai/openai.service";
-import { Injectable, InternalServerErrorException, HttpStatus } from "@nestjs/common";
+import {
+  Injectable,
+  InternalServerErrorException,
+  HttpStatus,
+} from "@nestjs/common";
 import * as ytdl from "ytdl-core";
 import { VideoResult } from "./dto/video-result.dto";
 import { Lang, ProcessVideo } from "./dto/process-video.dto";
@@ -14,19 +18,19 @@ export class VideoProcessService {
   ) {}
 
   structure = `{
-    q: "question nr 1",
-    as: [
+    "q": "question nr 1",
+    "as": [
       {
-        a: "Incorrect answer",
-        c: false
+        "a": "Incorrect answer",
+        "c": false
       },
       {
-        a: "Incorrect answer",
-        c: false
+        "a": "Incorrect answer",
+        "c": false
       },
       {
-        a: "correct answer",
-        c: true
+        "a": "correct answer",
+        "c": true
       },
     ]
   }`;
@@ -41,8 +45,10 @@ export class VideoProcessService {
       es: "Puedes generar un resumen de 200 palabras para este texto?",
     },
     {
-      en: `Based on the following text, create a multiple-choice quiz with 4 questions. The questions should follow this format: ${this.structure}`,
-      es: `A partir del siguiente texto, crea un quiz de opción múltiple con 4 preguntas. Las preguntas deben seguir este formato: ${this.structure}`,
+      en: `Based on the following text, please generate a multiple-choice quiz with 4 questions. It's crucial that each question adheres to the exact structure shown below ${this.structure} wraped in one array
+           Do NOT wrap the questions in any top-level object or array. Each question should directly adhere to the structure shown above. Please ensure this format is strictly followed.`,
+      es: `A partir del siguiente texto, crea un quiz de opción múltiple con 4 preguntas. Las preguntas deben seguir este formato: ${this.structure}
+           NO incluya las preguntas en ningún objeto de nivel superior. Cada pregunta debe adherirse directamente a la estructura que se muestra arriba. Asegúrese de que este formato se siga estrictamente.`,
     },
   ];
 
@@ -86,7 +92,7 @@ export class VideoProcessService {
       try {
         const url = `https://www.youtube.com/watch?v=${videoId}`;
         if (!ytdl.validateURL(url)) {
-          throw new InternalServerErrorException("Invalid URL" );
+          throw new InternalServerErrorException("Invalid URL");
         }
         const info = await ytdl.getInfo(url);
         const title = info.videoDetails.title;
@@ -111,7 +117,9 @@ export class VideoProcessService {
 
         return newTranscription;
       } catch (error) {
-        throw new InternalServerErrorException("Failed to transcribe video :" + error);
+        throw new InternalServerErrorException(
+          "Failed to transcribe video :" + error
+        );
       }
     }
   }
@@ -151,9 +159,7 @@ export class VideoProcessService {
         this.questions[2][lang],
         750
       );
-      console.log("quiz generated: " + quizGenerated);
       const stringQuiz = JSON.stringify(quizGenerated);
-
       this.processDataService.createQuiz(videoId, stringQuiz, lang);
       return quizGenerated;
     }

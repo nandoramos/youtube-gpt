@@ -1,4 +1,4 @@
-import { QuestionResponse } from '@/types';
+import { QuestionModel, QuestionResponse } from '@/types';
 import {
   Tabs,
   TabList,
@@ -16,7 +16,7 @@ import { useElapsedTime } from 'use-elapsed-time';
 
 const Quiz = () => {
   const router = useRouter();
-  const quizQuestions = getQuizQuestions();
+  const quizQuestions: QuestionModel[] = getQuizQuestions();
   const [quizStatus, setQuizStatus] = useState<QuestionResponse[]>([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);

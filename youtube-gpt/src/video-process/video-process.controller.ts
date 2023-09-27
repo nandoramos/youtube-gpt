@@ -17,7 +17,7 @@ export class VideoProcessController {
 
   @Get()
   async getAll(): Promise<Transcription[]> {
-    return await this.videoProcessService.getAll();
+    return (await this.videoProcessService.getAll()).reverse();
   }
 
   @Get('/:id')
