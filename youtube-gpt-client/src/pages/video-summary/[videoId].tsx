@@ -12,23 +12,59 @@ import {
   Heading,
   Text,
   Button,
+  Spinner,
 } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   summaryData: SummaryData;
 }
 
-const VideoSummaryDetail = ({ summaryData }: Props) => {
+const VideoSummaryDetail = ({ _nextI18Next: { initialLocale } }: any) => {
   const { t } = useTranslation('videoSummary');
   const router = useRouter();
+  const [summaryData, setSummaryData] = useState<SummaryData>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const videoId = router.query.videoId;
 
   const handleCancel = () => {
     router.push('/');
   };
 
   const handleStartQuiz = () => {
-    router.push(`/quiz/${summaryData.videoId}`);
+    router.push(`/quiz/${videoId}`);
   };
+
+  const getSummary = async () => {
+    setIsLoading(true);
+
+    try {
+      const summary = await getSummaryByVideoId(
+        videoId as string,
+        initialLocale,
+      );
+
+      if (!summary) {
+        setError(true);
+      }
+
+      setSummaryData(summary);
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!videoId) {
+      setError(true);
+    }
+    getSummary();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoId]);
 
   return (
     <Container maxW={'7xl'}>
@@ -56,64 +92,93 @@ const VideoSummaryDetail = ({ summaryData }: Props) => {
             <iframe
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${summaryData.videoId}`}
+              src={`https://www.youtube.com/embed/${videoId}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
           </Box>
         </Flex>
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '3xl', lg: '4xl' }}
+        {error ? (
+          <Flex
+            flex={1}
+            alignSelf="center"
+            justifyContent="center"
+            width="100%"
           >
-            <Text
-              as={'span'}
-              position={'relative'}
-              _after={{
-                content: "''",
-                width: 'full',
-                height: '30%',
-                position: 'absolute',
-                bottom: 1,
-                left: 0,
-                bg: 'red.400',
-                zIndex: -1,
-              }}
-            >
-              {summaryData.title}
-            </Text>
-          </Heading>
-          <Text color={'gray.500'}>{summaryData.summary}</Text>
+            <Text>Something went wrong</Text>
+          </Flex>
+        ) : (
           <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={{ base: 'column', sm: 'row' }}
+            flex={1}
+            width="100%"
+            spacing={{ base: 5, md: 10 }}
+            alignSelf={isLoading ? 'center' : ''}
+            alignItems={isLoading ? 'center' : ''}
           >
-            <Button
-              rounded={'full'}
-              size={'lg'}
-              fontWeight={'normal'}
-              px={6}
-              colorScheme={'red'}
-              bg={'#5893CE'}
-              _hover={{ bg: 'red.500' }}
-              onClick={handleStartQuiz}
-            >
-              {t('startQuiz')}
-            </Button>
-            <Button
-              rounded={'full'}
-              size={'lg'}
-              fontWeight={'normal'}
-              px={6}
-              onClick={handleCancel}
-            >
-              {t('cancel')}
-            </Button>
+            {isLoading ? (
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            ) : (
+              <>
+                <Heading
+                  lineHeight={1.1}
+                  fontWeight={600}
+                  fontSize={{ base: '2xl', sm: '3xl', lg: '4xl' }}
+                >
+                  <Text
+                    as={'span'}
+                    position={'relative'}
+                    _after={{
+                      content: "''",
+                      width: 'full',
+                      height: '30%',
+                      position: 'absolute',
+                      bottom: 1,
+                      left: 0,
+                      bg: 'red.400',
+                      zIndex: -1,
+                    }}
+                  >
+                    {summaryData?.title}
+                  </Text>
+                </Heading>
+                <Text color={'gray.500'}>{summaryData?.summary}</Text>
+                <Stack
+                  spacing={{ base: 4, sm: 6 }}
+                  direction={{ base: 'column', sm: 'row' }}
+                >
+                  <Button
+                    rounded={'full'}
+                    size={'lg'}
+                    fontWeight={'normal'}
+                    px={6}
+                    colorScheme={'red'}
+                    bg={'#5893CE'}
+                    _hover={{ bg: 'red.500' }}
+                    onClick={handleStartQuiz}
+                  >
+                    {t('startQuiz')}
+                  </Button>
+                  <Button
+                    rounded={'full'}
+                    size={'lg'}
+                    fontWeight={'normal'}
+                    px={6}
+                    onClick={handleCancel}
+                  >
+                    {t('cancel')}
+                  </Button>
+                </Stack>
+              </>
+            )}
           </Stack>
-        </Stack>
+        )}
       </Stack>
     </Container>
   );
@@ -123,15 +188,8 @@ export default VideoSummaryDetail;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context;
-  const videoId = context?.params?.videoId as string;
-
-  const summaryData = await getSummaryByVideoId(videoId);
-  const newProps = {
-    ...(await serverSideTranslations(locale ?? 'en')),
-    summaryData,
-  };
-
+  
   return {
-    props: { ...newProps },
+    props: { ...(await serverSideTranslations(locale ?? 'en')) },
   };
 };

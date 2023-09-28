@@ -3,8 +3,8 @@ import SearchLearnQuizIcon from '../searchLearnQuizIcon';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { getSummaryFromLink } from '@/services/videoProcessing';
 import { YOUTUBE_REGEX } from '@/utils/constants';
+import { getIdFromYoutubeVideoUrl } from '@/utils';
 
 const SearchLearnQuiz = () => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -13,46 +13,15 @@ const SearchLearnQuiz = () => {
   const { t } = useTranslation('home');
 
   const handleSubmit = async () => {
-    setShowSpinner(true);
-    const summary = await getSummaryFromLink(videoUrl);
-    setShowSpinner(false);
+    const videoId = await getIdFromYoutubeVideoUrl(videoUrl);
 
-    // IF SUCCESS REDIRECT TO VIDEO SUMMARY WITH RESPONSE FROM API
-    router.push(
-      { pathname: `/video-summary/${summary.videoId}`, query: summary },
-      `/video-summary/${summary.videoId}`,
-    );
+    router.push(`/video-summary/${videoId}`);
   };
 
   const isInputValid = useMemo(
     () => !videoUrl.match(YOUTUBE_REGEX) && videoUrl !== '',
     [videoUrl],
   );
-  const OverlaySpinner = () => {
-    if (showSpinner) {
-      return (
-        <Flex
-          position="fixed"
-          top="0"
-          right="0"
-          bottom="0"
-          left="0"
-          alignItems="center"
-          justifyContent="center"
-          backgroundColor="rgba(0, 0, 0, 0.3)" // semi-transparent white
-          zIndex="1000"
-        >
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </Flex>
-      );
-    }
-  };
 
   return (
     <Flex width="700px" direction="column" margin="0 auto">
@@ -113,7 +82,6 @@ const SearchLearnQuiz = () => {
           </Text>
         )}
       </Flex>
-      <OverlaySpinner />
     </Flex>
   );
 };
