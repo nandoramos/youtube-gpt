@@ -20,8 +20,8 @@ interface Props {
   summaryData: SummaryData;
 }
 
-const VideoSummaryDetail = ({ _nextI18Next: { initialLocale } }: any) => {
-  const { t } = useTranslation('videoSummary');
+const VideoSummaryDetail = () => {
+  const { t, i18n } = useTranslation('videoSummary');
   const router = useRouter();
   const [summaryData, setSummaryData] = useState<SummaryData>();
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ const VideoSummaryDetail = ({ _nextI18Next: { initialLocale } }: any) => {
 
     const apiRoute = `/api/summary?${new URLSearchParams({
       videoId: videoId as string,
-      lang: initialLocale,
+      lang: i18n?.language,
     })}`;
     const response = await fetch(apiRoute);
     const summary = await response.json();
@@ -53,29 +53,13 @@ const VideoSummaryDetail = ({ _nextI18Next: { initialLocale } }: any) => {
 
     setSummaryData(summary);
     setIsLoading(false);
-
-    // try {
-    //   const summary = await getSummaryByVideoId(
-    //     videoId as string,
-    //     initialLocale,
-    //   );
-
-    //   if (!summary) {
-    //     setError(true);
-    //   }
-
-    //   setSummaryData(summary);
-    //   setIsLoading(false);
-    // } catch (error) {
-    //   setError(true);
-    // }
   };
 
   useEffect(() => {
     if (!videoId) {
       setError(true);
     }
-    console.log('useEffect with no dependencies');
+
     getSummary();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
