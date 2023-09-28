@@ -1,7 +1,7 @@
-const NGROCK = 'http://fd16-2800-a4-260e-c400-61bc-950b-3c2d-2d1a.ngrok.io/video-process';
+import { API_URL } from '@/utils/constants';
 
 export const getAllSummaries = async () => {
-  const response = await fetch(NGROCK);
+  const response = await fetch(API_URL);
   const summaries = await response.json();
 
   if (!summaries) {
@@ -13,7 +13,9 @@ export const getAllSummaries = async () => {
 };
 
 export const getSummaryByVideoId = async (videoId: string, lang?: string) => {
-  const response = await fetch(`${NGROCK}/${videoId}?lang=${lang ? lang : 'en'}`);
+  const response = await fetch(
+    `${API_URL}/${videoId}?lang=${lang ? lang : 'en'}`,
+  );
   const summary = await response.json();
 
   if (!summary) {

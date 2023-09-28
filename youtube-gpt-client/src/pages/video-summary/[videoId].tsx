@@ -40,27 +40,42 @@ const VideoSummaryDetail = ({ _nextI18Next: { initialLocale } }: any) => {
   const getSummary = async () => {
     setIsLoading(true);
 
-    try {
-      const summary = await getSummaryByVideoId(
-        videoId as string,
-        initialLocale,
-      );
+    const apiRoute = `/api/summary?${new URLSearchParams({
+      videoId: videoId as string,
+      lang: initialLocale,
+    })}`;
+    const response = await fetch(apiRoute);
+    const summary = await response.json();
 
-      if (!summary) {
-        setError(true);
-      }
-
-      setSummaryData(summary);
-      setIsLoading(false);
-    } catch (error) {
+    if (!summary) {
       setError(true);
     }
+
+    setSummaryData(summary);
+    setIsLoading(false);
+
+    // try {
+    //   const summary = await getSummaryByVideoId(
+    //     videoId as string,
+    //     initialLocale,
+    //   );
+
+    //   if (!summary) {
+    //     setError(true);
+    //   }
+
+    //   setSummaryData(summary);
+    //   setIsLoading(false);
+    // } catch (error) {
+    //   setError(true);
+    // }
   };
 
   useEffect(() => {
     if (!videoId) {
       setError(true);
     }
+    console.log('useEffect with no dependencies');
     getSummary();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -188,7 +203,7 @@ export default VideoSummaryDetail;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context;
-  
+
   return {
     props: { ...(await serverSideTranslations(locale ?? 'en')) },
   };
