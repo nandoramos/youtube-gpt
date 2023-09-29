@@ -1,5 +1,5 @@
 {
-  "title" : "Quiz",
+  "title": "Quiz",
   "result": {
     "youRock": "You Rock!",
     "niceWork": "Nice Work!",
@@ -9,6 +9,7 @@
     "subTitleFailure": "It looks like that was a really hard topic.\nWhat about trying it again?",
     "time": "Time: {{time}}",
     "shareResults": "Share Results",
-    "tryAgain": "Try another video"
+    "tryAgain": "Try again",
+    "tryAnother": "Try another video"
   }
 }
