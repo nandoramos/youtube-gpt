@@ -1,9 +1,7 @@
-import { getIdFromYoutubeVideoUrl } from '@/utils';
-
-const NGROCK = 'http://localhost:3001/video-process';
+import { API_URL } from '@/utils/constants';
 
 export const getAllSummaries = async () => {
-  const response = await fetch(NGROCK);
+  const response = await fetch(API_URL);
   const summaries = await response.json();
 
   if (!summaries) {
@@ -14,24 +12,9 @@ export const getAllSummaries = async () => {
   return summaries;
 };
 
-export const getSummaryByVideoId = async (videoId: string) => {
-  const response = await fetch(`${NGROCK}/${videoId}`);
-  const summary = await response.json();
-
-  if (!summary) {
-    // if error return
-    return;
-  }
-
-  return summary;
-};
-
-export const getSummaryFromLink = async (youtubeUrl: string, lang?: string) => {
-  const videoId = await getIdFromYoutubeVideoUrl(youtubeUrl);
-
-  // HERE WE SHOULD CALL API WITH A GIVEN YOUTUBE URL
+export const getSummaryByVideoId = async (videoId: string, lang?: string) => {
   const response = await fetch(
-    `${NGROCK}/${videoId}?lang=${lang ? lang : 'en'}`,
+    `${API_URL}/${videoId}?lang=${lang ? lang : 'en'}`,
   );
   const summary = await response.json();
 
